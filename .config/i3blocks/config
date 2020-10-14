@@ -1,6 +1,12 @@
+[wifi]
+command=/home/pi/.config/i3blocks/blocks/wifi
+label=≈
+interval=10
+
 [volume]
 command=/home/pi/.config/i3blocks/blocks/volume
 interval=once
+label=♪
 signal=10
 
 [time]
@@ -8,4 +14,4 @@ command=date '+%a %d %b  %H:%M'
 interval=1
 
 [shutdown_menu]
-full_text=◆ 
+full_text=出 
