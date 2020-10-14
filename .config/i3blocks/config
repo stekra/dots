@@ -1,0 +1,11 @@
+[volume]
+command=/home/pi/.config/i3blocks/blocks/volume
+interval=once
+signal=10
+
+[time]
+command=date '+%a %d %b  %H:%M'
+interval=1
+
+[shutdown_menu]
+full_text=◆ 
