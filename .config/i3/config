@@ -143,9 +143,12 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # change volume or toggle mute
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+#bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioMute        exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+
+bindsym Pause       exec amixer -q -M sset HDMI 5%+ && pkill -RTMIN+10 i3blocks
+bindsym Scroll_Lock exec amixer -q -M sset HDMI 5%- && pkill -RTMIN+10 i3blocks
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -191,7 +194,7 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #ffffff
 client.urgent           $urgent-bg-color   $text-color        $inactive-text-color #ffffff
 
-title_align center
+#title_align center
 new_window 1pixel
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -200,7 +203,7 @@ bar {
         status_command i3blocks
 	font pango:SNFS Display 8
 	position top
-	separator_symbol " "
+	separator_symbol "  "
 	
 	colors {
 		#                   border  bg      text
