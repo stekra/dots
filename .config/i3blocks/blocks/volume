@@ -24,7 +24,7 @@
 # or you may use hw:# where # is the number of the card desired
 STEP=5%
 NATURAL_MAPPING=1
-LABEL="VOL "
+#LABEL="VOL "
 
 if [[ -z "$MIXER" ]] ; then
     MIXER="default"
