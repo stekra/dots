@@ -1,31 +1,32 @@
 [cpu_usage]
 command=/home/pi/.config/i3blocks/blocks/cpu_usage
-#label=CPU
-label=理
+label=cpu
+#label=理
 interval=20
 
 [memory]
 command=/home/pi/.config/i3blocks/blocks/memory
-#label=MEM
-label=憶
+label=mem
+#label=憶
 interval=20
 
 [bluetooth]
-#full_text=BT
-full_text=青歯
+full_text=bt
+#full_text=青歯
 command=blueman-manager > /dev/null
 
 [wifi]
 command=/home/pi/.config/i3blocks/blocks/wifi
-#label=≈
-label=無線
+label=≈
+#label=wifi
+#label=無線
 interval=10
 
 [volume]
 command=/home/pi/.config/i3blocks/blocks/volume
 interval=once
-#label=♪
-label=音
+label=♪
+#label=音
 signal=10
 
 [time]
@@ -33,8 +34,8 @@ command=date '+%a %d %b  %H:%M'
 interval=1
 
 [rofi]
-#full_text=⚲
-full_text=探索
+full_text=⚲
+#full_text=探索
 command=rofi -show run > /dev/null
 
 [shutdown_menu]

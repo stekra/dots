@@ -220,8 +220,11 @@ bindsym $mod+Control+q exec i3lock --color "$bg-color"
 # Wallpapers
 
 # Image
-#exec_always --no-startup-id feh --bg-scale /home/pi/Pictures/high-sierra.jpg
-exec_always --no-startup-id feh --bg-scale /home/pi/Pictures/skunk.jpg
+# exec_always --no-startup-id feh --bg-scale /home/pi/Pictures/high-sierra.jpg
+# exec_always --no-startup-id feh --bg-scale /home/pi/Pictures/skunk.jpg
+# exec_always --no-startup-id feh --bg-scale /home/pi/Pictures/raccoon.jpg
+# exec_always --no-startup-id feh --bg-scale /home/pi/Pictures/raccoonfamily.jpg
+exec_always --no-startup-id feh --bg-scale /home/pi/Pictures/out.jpg
 
 # Black
 #exec --no-startup-id xsetroot -solid "#000000" 
@@ -231,6 +234,10 @@ bindsym $mod+Control+space exec i3 open
 
 # i3-gaps
 for_window [class=".*"] border pixel 1
+gaps inner 12
+smart_gaps on
+bindsym $mod+Control+Shift+space gaps inner all toggle 0
 
-gaps inner 10
-# smart_gaps on
+# Screenshots
+bindsym $mod+Control+3 exec scrot
+bindsym --release $mod+Control+4 exec scrot -s

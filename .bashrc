@@ -129,6 +129,8 @@ alias config='/usr/bin/git --git-dir=/home/pi/.cfg/ --work-tree=/home/pi'
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-export PS1="\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+# export PS1="\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="\[\e[30;47m\]\u@\h\[\e[m\] \w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 alias yeet='rm -rf'
+alias pc='cd /home/pi/.lexaloffle/pico-8/carts'
