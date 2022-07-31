@@ -1,0 +1,17 @@
+include /usr/local/share/nano/*.nanorc
+include /usr/local/share/nano-syntax-highlighting/*.nanorc
+
+set autoindent
+#set linenumbers
+set mouse
+#set indicator
+set softwrap
+set tabsize 4
+set tabstospaces
+set minibar
+set constantshow
+set nohelp
+set titlecolor normal,normal
+set numbercolor normal,normal
+#set statuscolor
+#set keycolor
