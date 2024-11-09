@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+
+BAT0=$(cat /sys/class/power_supply/BAT0/capacity)
+BAT1=$(cat /sys/class/power_supply/BAT1/capacity)
+PERCENT=$(( ($BAT0 + $BAT1) / 2))
+
+BAT0_STATUS=$(cat /sys/class/power_supply/BAT0/status)
+BAT1_STATUS=$(cat /sys/class/power_supply/BAT1/status)
+
+if [ "$PERCENT" -le 10 ]; then
+    STATUS=" "
+elif [ "$PERCENT" -le 25 ]; then
+    STATUS=" "
+elif [ "$PERCENT" -le 50 ]; then
+    STATUS=" "
+elif [ "$PERCENT" -le 75 ]; then
+    STATUS=" "
+else
+    STATUS=" "
+fi
+
+COLOR="#FFFFFF"
+if [[ "$BAT0_STATUS" == "Charging" || "$BAT1_STATUS" == "Charging" ]]; then
+    STATUS="⚡︎"
+    COLOR="#FFFF00"
+elif [ "$PERCENT" -le 20 ]; then
+    COLOR="#FF0000"
+fi
+
+echo "$STATUS$PERCENT%"
+echo "$STATUS$PERCENT%"
+echo "$COLOR"
+

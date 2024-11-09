@@ -1,0 +1,15 @@
+#!/bin/bash
+
+sinkName=$(pacmd info | awk '/Default sink/ {print $4}')
+sinkNumber=$(pacmd info | grep "sink:.*$sinkName" | awk '{print $2}')
+
+volumeInput=$(pactl list sinks)
+currentVolume=$(echo "${volumeInput#*Sink #$sinkNumber}" | grep -E 'V.*-left' | grep -oE '[0-9]+%' | tail -n 1)
+
+muted=$(pactl list sinks | grep 'Mute: yes') 
+if [ -n "$muted" ]; then
+    echo "---"
+fi
+
+echo "$currentVolume"
+

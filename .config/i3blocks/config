@@ -1,36 +1,47 @@
-[cpu_usage]
-command=/home/pi/.config/i3blocks/blocks/cpu_usage
-label=cpu
+#[cpu_usage]
+#command=$HOME/.config/i3blocks/cpu
+#label=cpu
 #label=理
-interval=20
+#interval=10
+#DECIMALS=0
 
-[memory]
-command=/home/pi/.config/i3blocks/blocks/memory
-label=mem
+#[memory]
+#command=$HOME/.config/i3blocks/memory
+#label=mem
 #label=憶
-interval=20
+#interval=20
 
-[bluetooth]
-full_text=bt
+#[bluetooth]
+#full_text=bt
 #full_text=青歯
-command=blueman-manager > /dev/null
+#command=blueman-manager > /dev/null
 
 [wifi]
-command=/home/pi/.config/i3blocks/blocks/wifi
-label=≈
+command=$HOME/.config/i3blocks/wifi
+label=≈ 
 #label=wifi
 #label=無線
 interval=10
 
 [volume]
-command=/home/pi/.config/i3blocks/blocks/volume
-interval=once
-label=♪
+command=$HOME/.config/i3blocks/volume
+label=♪ 
 #label=音
+interval=once
+signal=11
+
+[brightness]
+command=$HOME/.config/i3blocks/brightness
+label=☼ 
+interval=once
 signal=10
 
+[battery]
+command=$HOME/.config/i3blocks/battery
+interval=1
+
 [time]
-command=date '+%a %d %b  %H:%M'
+command=date '+%a %d %b %H:%M'
 interval=1
 
 [rofi]
@@ -40,4 +51,5 @@ command=rofi -show run > /dev/null
 
 [shutdown_menu]
 full_text=出 
-command=/home/pi/.config/i3blocks/blocks/shutdown_menu
+command=$HOME/.config/i3blocks/shutdown_menu
+
