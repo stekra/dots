@@ -21,7 +21,7 @@ HISTFILESIZE=2000
 shopt -s checkwinsize
 
 bind 'set completion-ignore-case on'
-bind 'set show-all-if-amiguous on'
+bind 'set show-all-if-ambiguous on'
 
 export EDITOR='nvim'
 export VISUAL='nvim'
