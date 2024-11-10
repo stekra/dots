@@ -74,7 +74,8 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 
 # start rofi
 bindsym $mod+space exec rofi -show drun
-bindsym $mod+Tab   exec rofi -show window
+bindsym $mod+Shift+e exec "rofi -theme-str 'listview {require-input: false;}' -show filebrowser"
+# bindsym $mod+Tab   exec rofi -show window
 
 # start browser
 bindsym $mod+b exec firefox
