@@ -44,10 +44,10 @@ interval=1
 command=date '+%a %d %b %H:%M'
 interval=1
 
-[rofi]
-full_text=⚲
+# [rofi]
+# full_text=⚲
 #full_text=探索
-command=rofi -show run > /dev/null
+# command=rofi -show run > /dev/null
 
 [shutdown_menu]
 full_text=出 
