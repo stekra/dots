@@ -5,11 +5,38 @@ sinkNumber=$(pacmd info | grep "sink:.*$sinkName" | awk '{print $2}')
 
 volumeInput=$(pactl list sinks)
 currentVolume=$(echo "${volumeInput#*Sink #$sinkNumber}" | grep -E 'V.*-left' | grep -oE '[0-9]+%' | tail -n 1)
+currentVolume=${currentVolume%\%} # Remove '%' from volume value
 
-muted=$(pactl list sinks | grep 'Mute: yes') 
-if [ -n "$muted" ]; then
-    echo "---"
+if [ "$currentVolume" -gt 100 ]; then
+  pactl set-sink-volume "$sinkNumber" 100%
+  currentVolume=100
 fi
 
-echo "$currentVolume"
+bar=""
+steps=$((currentVolume / 25))
+remainder=$((currentVolume % 25))
 
+for i in {1..4}; do
+  if [ $i -le $steps ]; then
+    bar+='█'
+  elif [ $i -eq $((steps + 1)) ]; then
+    if [ $remainder -ge 18 ]; then
+      bar+='▙'
+    elif [ $remainder -ge 12 ]; then
+      bar+='▌'
+    elif [ $remainder -ge 6 ]; then
+      bar+='▖'
+    else
+      bar+='░'
+    fi
+  else
+    bar+='░'
+  fi
+done
+
+muted=$(pactl list sinks | grep 'Mute: yes')
+if [ "$muted" ]; then
+  echo "▒▒▒▒"
+else
+  echo "$bar"
+fi

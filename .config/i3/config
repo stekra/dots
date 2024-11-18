@@ -40,15 +40,15 @@ exec_always --no-startup-id autotiling
 
 # Use amixer to adjust volume in PulseAudio.
 set $refresh_volume pkill -RTMIN+11 i3blocks
-bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_volume
-bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_volume
+bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +6.25% && $refresh_volume
+bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -6.25% && $refresh_volume
 bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_volume
 bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_volume
 
 # Use brightnessctl to adjust brightness.
 set $refresh_brightness pkill -RTMIN+10 i3blocks
-bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +10% -e && $refresh_brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%- -e && pkill -RTMIN+10 i3blocks
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +6.25% -e && $refresh_brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 6.25%- -e && pkill -RTMIN+10 i3blocks
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -69,7 +69,8 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 
 # start rofi
 bindsym $mod+space exec rofi -show drun
-bindsym $mod+Shift+e exec "rofi -theme-str 'listview {require-input: false;}' -show filebrowser"
+bindsym $mod+Shift+b exec "rofi -theme-str 'listview {require-input: false;}' -show filebrowser"
+bindsym $mod+Shift+e exec "$HOME/.config/i3blocks/shutdown_menu"
 
 # start browser
 bindsym $mod+b exec firefox
@@ -243,7 +244,7 @@ bar {
 
 # Wallpapers
 # Image
-exec_always --no-startup-id feh --bg-scale $HOME/wallpaper.*
+exec_always --no-startup-id feh --bg-fill $HOME/wallpaper.*
 # Solid
 #exec --no-startup-id xsetroot -solid "#0000ff"
 

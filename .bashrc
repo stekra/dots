@@ -30,7 +30,6 @@ alias sudo='sudo -E -s '
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias vim='nvim'
 alias dots='/usr/bin/git --git-dir="$HOME/.dots/" --work-tree="$HOME"'
 
 #PS1='[\u@\h \W]\$ '
