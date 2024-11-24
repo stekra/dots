@@ -1,6 +1,5 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-BRIGHTNESS=$(brightnessctl -m | awk -F, '{print $4}')
+brightness=$(brightnessctl -m | awk -F, '{print $4}')
 
-echo "$BRIGHTNESS"
-
+echo "$brightness"
