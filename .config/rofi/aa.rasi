@@ -32,7 +32,7 @@
 }
 window {
     background-color: var(background);
-    border:           1;
+    border:           2;
     padding:          0;
     width:            500;
     font:             "Input Mono Regular 14";
@@ -51,7 +51,7 @@ textbox {
 }
 listview {
     //fixed-height: 0;
-    border:       1px 0px 0px ;
+    border:       2px 0px 0px ;
     border-color: var(separatorcolor);
     spacing:      0px ;
     //scrollbar:    true;

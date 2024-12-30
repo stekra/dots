@@ -23,8 +23,8 @@ shopt -s checkwinsize
 bind 'set completion-ignore-case on'
 bind 'set show-all-if-ambiguous on'
 
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='vim'
+export VISUAL='vim'
 
 alias sudo='sudo -E -s '
 alias ls='ls --color=auto'

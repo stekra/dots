@@ -1,0 +1,10 @@
+theme = iTerm2 Default
+font-size = 14
+mouse-hide-while-typing = true
+window-decoration = true
+resize-overlay = never
+gtk-titlebar = false
+confirm-close-surface = false
+
+keybind = ctrl+shift+1=increase_font_size:1
+keybind = ctrl+shift+,=reload_config

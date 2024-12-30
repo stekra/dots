@@ -19,8 +19,8 @@ Plug 'kana/vim-textobj-entire' " dae
 Plug 'machakann/vim-highlightedyank'
 let g:highlightedyank_highlight_duration = 200
 Plug 'romainl/vim-cool'
-" Dynamic hlsearch/nohl
-" Statusline
+Plug 'itchyny/lightline.vim'
+let g:lightline = { 'colorscheme': 'wombat', }
 
 " Themes
 Plug 'zaki/zazen'
@@ -47,7 +47,7 @@ set expandtab
 set scrolloff=10
 set sidescrolloff=5
 set clipboard^=unnamed,unnamedplus
-colorscheme grb256
+colorscheme zazen
 set noshowmode
 
 " Keybinds

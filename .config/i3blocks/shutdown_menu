@@ -38,7 +38,7 @@ BORDER_COLOR="${BORDER_COLOR:-#222222}"
 
 # Options not related to colors
 ROFI_TEXT="${ROFI_TEXT:-Menu:}"
-ROFI_OPTIONS=(${ROFI_OPTIONS:--theme-str 'window{width:11%;border:1;}listview{require-input:false;}entry{enabled:false;}window{y-offset:26;width:150;}mainbox{children:[listview];}' -location 3 -no-fixed-num-lines -no-levenshtein-sort})
+ROFI_OPTIONS=(${ROFI_OPTIONS:--theme-str 'window{width:11%;border:2;}listview{require-input:false;}entry{enabled:false;}window{y-offset:26;width:150;}mainbox{children:[listview];}' -location 3 -no-fixed-num-lines -no-levenshtein-sort})
 
 # Zenity options
 ZENITY_TITLE="${ZENITY_TITLE:-Menu}"
