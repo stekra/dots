@@ -17,7 +17,7 @@ Plug 'wellle/targets.vim' " daa, dab
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire' " dae
 Plug 'machakann/vim-highlightedyank'
-let g:highlightedyank_highlight_duration = 200
+let g:highlightedyank_highlight_duration = 100
 Plug 'romainl/vim-cool'
 Plug 'itchyny/lightline.vim'
 let g:lightline = { 'colorscheme': 'wombat', }
@@ -47,12 +47,12 @@ set expandtab
 set scrolloff=10
 set sidescrolloff=5
 set clipboard^=unnamed,unnamedplus
-colorscheme zazen
+colorscheme grb256
 set noshowmode
 
 " Keybinds
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 " This doesn't seem to work (using vim-cool instead):
-nnoremap <Esc> :nohl
+" nnoremap <Esc> :nohl
 

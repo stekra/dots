@@ -1,5 +1,7 @@
-theme = iTerm2 Default
+font-family = Geist Mono
 font-size = 14
+font-feature = -calt
+theme = iTerm2 Tango Dark
 mouse-hide-while-typing = true
 window-decoration = true
 resize-overlay = never
@@ -8,3 +10,4 @@ confirm-close-surface = false
 
 keybind = ctrl+shift+1=increase_font_size:1
 keybind = ctrl+shift+,=reload_config
+
