@@ -5,7 +5,7 @@
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
-# font_family      Input Mono
+font_family      Input Mono
 # bold_font        auto
 # italic_font      auto
 # bold_italic_font auto
@@ -19,7 +19,7 @@
 #: <https://sw.kovidgoyal.net/kitty/kittens/choose-fonts/#font-spec-
 #: syntax>.
 
-# font_size 11.0
+font_size 14.0
 
 #: Font size (in pts).
 
@@ -305,6 +305,42 @@
 
 #: Stop blinking cursor after the specified number of seconds of
 #: keyboard inactivity. Set to zero to never stop blinking.
+
+# cursor_trail 3
+
+#: Set this to a value larger than zero to enable a "cursor trail"
+#: animation. This is an animation that shows a "trail" following the
+#: movement of the text cursor. It makes it easy to follow large
+#: cursor jumps and makes for a cool visual effect of the cursor
+#: zooming around the screen. The actual value of this option controls
+#: when the animation is trigerred. It is a number of milliseconds.
+#: The trail animation only follows cursors that have stayed in their
+#: position for longer than the specified number of milliseconds. This
+#: prevents trails from appearing for cursors that rapidly change
+#: their positions during UI updates in complex applications. See
+#: cursor_trail_decay to control the animation speed and
+#: cursor_trail_start_threshold to control when a cursor trail is
+#: started.
+
+# cursor_trail_decay 0.1 0.4
+
+#: Controls the decay times for the cursor trail effect when the
+#: cursor_trail is enabled. This option accepts two positive float
+#: values specifying the fastest and slowest decay times in seconds.
+#: The first value corresponds to the fastest decay time (minimum),
+#: and the second value corresponds to the slowest decay time
+#: (maximum). The second value must be equal to or greater than the
+#: first value. Smaller values result in a faster decay of the cursor
+#: trail. Adjust these values to control how quickly the cursor trail
+#: fades away.
+
+# cursor_trail_start_threshold 2
+
+#: Set the distance threshold for starting the cursor trail. This
+#: option accepts a positive integer value that represents the minimum
+#: number of cells the cursor must move before the trail is started.
+#: When the cursor moves less than this threshold, the trail is
+#: skipped, reducing unnecessary cursor trail animation.
 
 #: }}}
 
@@ -733,7 +769,7 @@
 
 #: Terminal bell {{{
 
-# enable_audio_bell yes
+# enable_audio_bell no
 
 #: The audio bell. Useful to disable it in environments that require
 #: silence.
@@ -781,6 +817,7 @@
 #: window in which the bell occurred.
 
 # bell_path none
+bell_path /usr/share/sounds/freedesktop/stereo/dialog-information.oga
 
 #: Path to a sound file to play as the bell sound. If set to none, the
 #: system default bell sound is used. Must be in a format supported by
@@ -788,7 +825,6 @@
 #: (libcanberra) or AIFF, MP3 or WAV on macOS (NSSound).
 
 # linux_bell_theme __custom
-linux_bell_theme /usr/share/sounds/freedesktop/stereo/dialog-information.oga
 
 #: The XDG Sound Theme kitty will use to play the bell sound. Defaults
 #: to the custom theme name specified in the XDG Sound theme
@@ -2307,6 +2343,7 @@ linux_bell_theme /usr/share/sounds/freedesktop/stereo/dialog-information.oga
 # map cmd+plus         change_font_size all +2.0
 # map cmd+equal        change_font_size all +2.0
 # map shift+cmd+equal  change_font_size all +2.0
+map kitty_mod+shift+1  change_font_size all +2.0
 
 #: Decrease font size
 
@@ -2599,10 +2636,3 @@ linux_bell_theme /usr/share/sounds/freedesktop/stereo/dialog-information.oga
 
 #: }}}
 
-
-# BEGIN_KITTY_FONTS
-font_family      family="Source Code Pro"
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
-# END_KITTY_FONTS
