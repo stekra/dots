@@ -3,7 +3,10 @@ export PATH="/opt/homebrew/opt/tcl-tk/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/tcl-tk/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/tcl-tk/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/tcl-tk/lib/pkgconfig"
-eval "$(pyenv init -)"
+export HOMEBREW_NO_ENV_HINTS=1
+
+# eval "$(pyenv init -)"
+
 alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 PROMPT='%K{white}%F{black}%n@%m%k%f %~ $ '
 

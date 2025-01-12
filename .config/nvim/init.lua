@@ -4,7 +4,7 @@ vim.g.maplocalleader = " "
 -- vim.opt.relativenumber = true
 vim.opt.signcolumn = "no"
 vim.opt.mouse = "a"
-vim.opt.showmode = false
+-- vim.opt.showmode = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 10
 vim.opt.undofile = true
@@ -45,6 +45,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
+
+-- Only show in-line diagnostics of current line
+vim.diagnostic.config({ virtual_text = false })
 
 require("lazy").setup({
 	"tpope/vim-sleuth", -- Auto tabstop and shiftwidth
@@ -133,44 +136,28 @@ require("lazy").setup({
 			{ "williamboman/mason.nvim", config = true },
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-			{ "j-hui/fidget.nvim", opts = {} },
+			{
+				"j-hui/fidget.nvim",
+				opts = {
+					progress = {
+						ignore = {
+							function(msg)
+								return msg.lsp_client.name == "pylsp" and string.find(msg.title, "lint:")
+							end,
+						},
+					},
+				},
+			},
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-				callback = function(event)
-					-- Keybinds
+				callback = function(args)
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 					vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references)
 					vim.keymap.set("n", "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols)
 					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
-
-					-- Hightlight symbol on hover
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-						local highlight_augroup =
-							vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
-						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-							buffer = event.buf,
-							group = highlight_augroup,
-							callback = vim.lsp.buf.document_highlight,
-						})
-
-						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-							buffer = event.buf,
-							group = highlight_augroup,
-							callback = vim.lsp.buf.clear_references,
-						})
-
-						vim.api.nvim_create_autocmd("LspDetach", {
-							group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
-							callback = function(event2)
-								vim.lsp.buf.clear_references()
-								vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
-							end,
-						})
-					end
 				end,
 			})
 
@@ -181,7 +168,7 @@ require("lazy").setup({
 				-- clangd = {},
 				-- gopls = {},
 				-- pyright = {},
-				-- rust_analyzer = {},
+				rust_analyzer = {},
 				-- ts_ls = {},
 				lua_ls = {
 					settings = {
@@ -189,16 +176,16 @@ require("lazy").setup({
 							completion = {
 								callSnippet = "Replace",
 							},
-							-- diagnostics = { disable = { 'missing-fields' } },
+							diagnostics = { disable = { "missing-fields" } },
 						},
 					},
 				},
 			}
 			require("mason").setup()
-
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua",
+				"rust_analyzer",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -302,6 +289,17 @@ require("lazy").setup({
 		end,
 	},
 
+	{ -- In-line diagnostic style
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "VeryLazy", -- Or `LspAttach`
+		priority = 1000, -- needs to be loaded in first
+		config = function()
+			require("tiny-inline-diagnostic").setup({
+				preset = "minimal",
+			})
+		end,
+	},
+
 	-- Themes
 
 	{
@@ -310,18 +308,27 @@ require("lazy").setup({
 	},
 	{
 		"datsfilipe/vesper.nvim",
-		priority = 1000,
 		opts = {
 			transparent = true,
 			italics = {
+				comments = true,
 				keywords = false,
 				functions = false,
 				strings = false,
 				variables = false,
 			},
 		},
-		init = function()
+		config = function(_, opts)
+			require("vesper").setup(opts)
 			vim.cmd.colorscheme("vesper")
+		end,
+	},
+	{
+		"kvrohit/rasmus.nvim",
+		config = function()
+			-- vim.g.rasmus_variant = "monochrome"
+			vim.g.rasmus_transparent = true
+			-- vim.cmd.colorscheme("rasmus")
 		end,
 	},
 
@@ -336,9 +343,20 @@ require("lazy").setup({
 		"echasnovski/mini.nvim",
 		config = function()
 			require("mini.ai").setup({ n_lines = 500 })
-			require("mini.surround").setup()
-			local statusline = require("mini.statusline")
-			statusline.setup({ use_icons = false })
+		end,
+	},
+
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup({
+				options = {
+					icons_enabled = false,
+					component_separators = "|",
+					section_separators = "",
+				},
+			})
 		end,
 	},
 
@@ -370,8 +388,6 @@ require("lazy").setup({
 	},
 }, {
 	ui = {
-		-- If you are using a Nerd Font: set icons to an empty table which will use the
-		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
 		icons = vim.g.have_nerd_font and {} or {
 			cmd = "⌘",
 			config = "🛠",
@@ -389,3 +405,5 @@ require("lazy").setup({
 		},
 	},
 })
+
+-- vim: ts=2 sts=2 sw=2 et
