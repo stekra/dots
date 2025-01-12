@@ -39,4 +39,6 @@ alias dots='/usr/bin/git --git-dir="$HOME/.dots/" --work-tree="$HOME"'
 # }
 # export PS1="\[\e[30;47m\]\u@\h\[\e[m\] \w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
-PS1="\[\e[30;107m\]\u@\h\[\e[0m\] \w $ "
+# PS1="\[\e[30;107m\]\u@\h\[\e[0m\] \w $ "
+PS1="\[\e[7m\]\u@\h\[\e[0m\] \w $ "
+

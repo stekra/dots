@@ -2,10 +2,10 @@ font-family = Geist Mono
 font-size = 14
 font-feature = -calt
 theme = iTerm2 Tango Dark
+# theme = dark:iTerm2 Tango Dark,light:iTerm2 Tango Light
 mouse-hide-while-typing = true
-window-decoration = true
+window-decoration = false
 resize-overlay = never
-gtk-titlebar = false
 confirm-close-surface = false
 
 keybind = ctrl+shift+1=increase_font_size:1
