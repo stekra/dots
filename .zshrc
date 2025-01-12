@@ -5,6 +5,10 @@ export CPPFLAGS="-I/opt/homebrew/opt/tcl-tk/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/tcl-tk/lib/pkgconfig"
 export HOMEBREW_NO_ENV_HINTS=1
 
+# Case insensitive completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
 # eval "$(pyenv init -)"
 
 alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
