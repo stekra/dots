@@ -19,6 +19,26 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.cmdheight = 0
+vim.opt.termguicolors = true
+
+-- transparent background
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "VeryLazy",
+	callback = function()
+		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+		vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Terminal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+		vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
+		vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+	end,
+})
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, {})
@@ -320,7 +340,7 @@ require("lazy").setup({
 		},
 		config = function(_, opts)
 			require("vesper").setup(opts)
-			vim.cmd.colorscheme("vesper")
+			-- vim.cmd.colorscheme("vesper")
 		end,
 	},
 	{
@@ -331,6 +351,8 @@ require("lazy").setup({
 			-- vim.cmd.colorscheme("rasmus")
 		end,
 	},
+
+	-- Plugins
 
 	{ -- Highlight todo, notes, etc in comments
 		"folke/todo-comments.nvim",

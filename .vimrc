@@ -49,8 +49,10 @@ set expandtab
 set scrolloff=10
 set sidescrolloff=5
 set clipboard^=unnamed,unnamedplus
-colorscheme monochrome
+" colorscheme monochrome
 set noshowmode
+set ttimeoutlen=0
+set mouse=a
 
 " Keybinds
 noremap j gj
