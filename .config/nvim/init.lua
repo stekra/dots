@@ -22,8 +22,12 @@ vim.opt.cmdheight = 0
 vim.opt.termguicolors = true
 
 -- transparent background
+-- (think this should be run after theme is set but idk)
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+vim.api.nvim_set_hl(0, "VertSplit", { bg = "none" })
 
 vim.api.nvim_create_autocmd("User", {
 	pattern = "VeryLazy",
