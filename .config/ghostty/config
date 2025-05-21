@@ -1,4 +1,6 @@
-font-family = IBM Plex Mono, SF Mono
+font-family = CommitMono
+font-family = SF Mono
+#font-feature = -calt, -liga, -dlig
 theme = dark: Apple System Colors, light: iTerm2 Tango Light
 font-size = 14
 cursor-style-blink = false

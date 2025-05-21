@@ -6,7 +6,7 @@ vim.opt.signcolumn = "no"
 vim.opt.mouse = "a"
 -- vim.opt.showmode = false
 vim.opt.clipboard = "unnamedplus"
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 vim.opt.undofile = true
 vim.opt.showbreak = "↪"
 vim.opt.ignorecase = true
@@ -18,7 +18,7 @@ vim.opt.inccommand = "split"
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
 vim.opt.termguicolors = true
 
 -- transparent background
@@ -44,8 +44,12 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, {})
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", {})
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", {})
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", {})
@@ -177,7 +181,7 @@ require("lazy").setup({
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-				callback = function(args)
+				callback = function()
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 					vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references)
 					vim.keymap.set("n", "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols)
