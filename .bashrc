@@ -1,10 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+# if not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -21,20 +18,25 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# completion
+bind 'set completion-ignore-case on'
+bind 'set show-all-if-ambiguous on'
+
 # prompt
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-# export PS1="\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
-# export PS1="\[\e[30;47m\]\u@\h\[\e[m\] \w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
-export PS1="\[\e[47;30m\]\u@\h\[\e[0m\] \W \$ "
+# PS1="\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+# PS1="\[\e[30;47m\]\u@\h\[\e[m\] \w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+PS1="\[\e[7m\]\u@\h\[\e[0m\] \w $ "
 
 # environment
-export EDITOR=nvim
+EDITOR=nvim
+VISUAL=nvim
 
 # aliases
 alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias vim='nvim'
 alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 alias yeet='rm -rf'
-alias pc='cd $HOME/.lexaloffle/pico-8/carts'
