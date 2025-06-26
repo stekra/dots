@@ -7,7 +7,7 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # prompt
-PROMPT='%K{white}%F{black}%n@%m%k%f %1~ $ '
+PROMPT=$'%{\e[7m%}%n@%m%{\e[0m%} %~ $ '
 
 # variables
 export EDITOR=nvim
