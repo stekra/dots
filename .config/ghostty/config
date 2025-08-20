@@ -1,6 +1,8 @@
 font-family = CommitMono
 font-family = SF Mono
-#font-feature = -calt, -liga, -dlig
+font-style-italic = false
+font-synthetic-style = false
+font-feature = -calt, -liga, -dlig
 theme = dark: Apple System Colors, light: iTerm2 Tango Light
 font-size = 14
 cursor-style-blink = false
@@ -11,4 +13,3 @@ shell-integration-features = no-cursor
 macos-non-native-fullscreen = visible-menu
 macos-titlebar-proxy-icon = hidden
 window-padding-color = extend
-macos-option-as-alt = left
