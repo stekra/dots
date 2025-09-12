@@ -8,6 +8,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+vim.opt.guicursor = "n-v-c-i:block"
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -22,6 +23,7 @@ vim.opt.winborder = "single"
 vim.opt.undofile = true
 vim.opt.autoread = true
 vim.opt.clipboard = "unnamedplus"
+
 vim.g.netrw_banner = 0
 
 vim.g.mapleader = " "
@@ -56,15 +58,9 @@ vim.pack.add({
     { src = "https://github.com/vague2k/vague.nvim" },
 })
 
-require("mason").setup({
-    registries = {
-        "github:mason-org/mason-registry",
-        "github:Crashdummyy/mason-registry",
-    },
-})
+require("mason").setup()
 
-vim.lsp.enable({ "lua_ls", "clangd", "roslyn" })
--- roslyn doesnt seem to get config
+vim.lsp.enable({ "lua_ls", "clangd", "omnisharp" })
 
 vim.lsp.config("lua_ls", {
     settings = {
@@ -75,8 +71,6 @@ vim.lsp.config("lua_ls", {
         }
     }
 })
-
-vim.lsp.config("clangd", { })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()

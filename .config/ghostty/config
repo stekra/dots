@@ -1,10 +1,10 @@
+# font-family = Mx437 IBM VGA 8x16
 font-family = CommitMono
-font-family = SF Mono
 font-style-italic = false
 font-synthetic-style = false
 font-feature = -calt, -liga, -dlig
 theme = dark: Apple System Colors, light: iTerm2 Tango Light
-font-size = 14
+font-size = 16
 cursor-style-blink = false
 mouse-hide-while-typing = true
 window-colorspace = display-p3
