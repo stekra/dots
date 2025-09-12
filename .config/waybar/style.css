@@ -1,0 +1,34 @@
+* {
+    font-family: CommitMono;
+    padding: 0px;
+    font-size: 0px;
+    background: none;
+}
+
+window#waybar {
+}
+
+.modules-left {
+}
+
+#workspaces {
+}
+
+#workspaces button {
+    min-height: 2px;
+    min-width: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 0px;
+    background: gray;
+    transition-property: background;
+    transition-duration: 0.15s;
+}
+
+#workspaces button.active {
+    background-color: white;
+    transition-property: background;
+    transition-duration: 0.15s;
+}
+
