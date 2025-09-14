@@ -17,11 +17,8 @@
 	    "format": "",
     },
     "tray": {
-        // "icon-size": 21,
-        "spacing": 0
-        // "icons": {
-        //   "blueman": "bluetooth",
-        // }
+        "icon-size": 21,
+        "spacing": 4,
     },
     "clock": {
         // "timezone": "America/New_York",
