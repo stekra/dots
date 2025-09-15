@@ -33,6 +33,9 @@ PS1="\[\e[7m\]\u@\h\[\e[0m\] \w $ "
 # environment
 VISUAL=nvim
 
+# path
+export PATH=$PATH:$HOME/.config/scripts
+
 # aliases
 alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias vim='nvim'

@@ -1,0 +1,22 @@
+text-color=#000000ff
+background-color=#ffffffff
+border-size=1
+border-color=#000000ff
+
+[app-name=wp-vol]
+text-color=#000000ff
+background-color=#000000ff
+border-color=#ffffffff
+progress-color=#ffffffff
+layer=overlay
+history=0
+#anchor=top-center
+# Group all volume notifications together
+group-by=app-name
+# Hide the group-index
+format=<b>%s</b>\n%b
+
+[app-name=volume group-index=0]
+# Only show last notification
+invisible=0
+
