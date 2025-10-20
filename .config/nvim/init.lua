@@ -87,8 +87,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
     end,
 })
--- vim.g.zenbones_compat = 1
--- vim.cmd.colorscheme("zenbones")
-require("vague").setup({ bold = false, italic = false, })
-vim.cmd.colorscheme("vague")
+vim.g.zenbones_compat = 1
+vim.cmd.colorscheme("zenbones")
+-- require("vague").setup({ bold = false, italic = false, })
+-- vim.cmd.colorscheme("vague")
 

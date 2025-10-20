@@ -3,37 +3,44 @@
     // "layer": "top", // Waybar at top layer
     "position": "left", // Waybar position (top|bottom|left|right)
     // "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 10, // Waybar width
-    "spacing": 0, // Gaps between modules (4px)
+    "width": 22, // Waybar width
+    "spacing": 20, // Gaps between modules (4px)
     "margin": "10 0 10 10",
+
     "modules-left": [
         "hyprland/workspaces"
     ],
+
     "modules-center": [
     ],
+
     "modules-right": [
+        "tray",
+        "network",
+        "clock",
     ],
+
     "hyprland/workspaces": {
 	    "format": "",
     },
+
     "tray": {
         "icon-size": 21,
-        "spacing": 4,
+        "spacing": 20,
     },
+
     "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%H\n%M}"
     },
+
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-wifi": " ",
+        "format-ethernet": " ",
+        "tooltip-format": "{essid} ({signalStrength}%)",
+        "format-disconnected": "󰖪 ",
+        "on-click": "nm-editor"
     },
+
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",

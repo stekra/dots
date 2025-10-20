@@ -3,7 +3,8 @@ font-family = CommitMono
 font-style-italic = false
 font-synthetic-style = false
 font-feature = -calt, -liga, -dlig
-theme = dark: Apple System Colors, light: iTerm2 Tango Light
+# theme = dark: Apple System Colors, light: iTerm2 Tango Light
+theme = dark: iTerm2 Tango Dark, light: iTerm2 Tango Light
 font-size = 16
 cursor-style-blink = false
 mouse-hide-while-typing = true
@@ -12,4 +13,7 @@ resize-overlay = never
 shell-integration-features = no-cursor
 macos-non-native-fullscreen = visible-menu
 macos-titlebar-proxy-icon = hidden
+window-padding-x = 0
+window-padding-y = 0
 window-padding-color = extend
+
