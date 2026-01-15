@@ -32,9 +32,16 @@ VISUAL=nvim
 export PATH=$PATH:$HOME/.config/scripts
 
 # aliases
-alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias vim='nvim'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias yeet='rm -rf'
+
+# dotfiles
+# set up on new machine:
+    # echo ".dots" >> .gitignore
+    # git clone --bare git@github.com:stekra/dots.git $HOME/.dots
+    # dots checkout
+    # dots config --local status.showUntrackedFiles no
+alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 
