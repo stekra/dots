@@ -23,13 +23,7 @@ bind 'set completion-ignore-case on'
 bind 'set show-all-if-ambiguous on'
 
 # prompt
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-# PS1="\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
-# PS1="\[\e[30;47m\]\u@\h\[\e[m\] \w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
-# PS1="\[\e[7m\]\u@\h\[\e[0m\] \w $ "
-PS1="\[\e[7m\]\w\[\e[0m\] $ "
+PS1="\[\e[7m\]\u@\h\[\e[0m\] \w $ "
 
 # environment
 VISUAL=nvim
