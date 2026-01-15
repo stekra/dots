@@ -4,11 +4,12 @@ window#waybar {
     font-size: 0px;
     background: none;
     min-width: 20px;
-    color: white;
+    color: black;
 }
 
 .modules-right {
     font-size: 14px;
+    font-weight: 500;
 }
 
 .modules-center {
@@ -31,14 +32,15 @@ window#waybar {
     margin-bottom: 12px;
     border: none;
     border-radius: 0px;
-    background: gray;
-    transition-property: background;
+    background: black;
+    opacity: 0.2;
+    transition-property: opacity;
     transition-duration: 0.15s;
 }
 
 #workspaces button.active {
-    background-color: white;
-    transition-property: background;
+    opacity: 1;
+    transition-property: opacity;
     transition-duration: 0.15s;
 }
 
