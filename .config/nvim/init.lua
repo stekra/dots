@@ -1,5 +1,6 @@
 -- vim.opt.signcolumn = "yes:1"
 vim.opt.signcolumn = "no"
+vim.opt.linebreak = true
 vim.opt.showbreak = "↪"
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 8
@@ -54,7 +55,15 @@ vim.pack.add({
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/zenbones-theme/zenbones.nvim" },
     { src = "https://github.com/vague2k/vague.nvim" },
+    { src = "https://github.com/folke/zen-mode.nvim" },
 })
+
+require("zen-mode").setup({
+    window = {
+        width = 80,
+    }
+})
+vim.keymap.set("n", "<leader>z", ":ZenMode<CR>")
 
 require("mason").setup()
 

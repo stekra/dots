@@ -1,17 +1,15 @@
 text-color=#000000ff
-background-color=#ffffffff
-border-size=1
-border-color=#000000ff
-border-radius=8
-
-[app-name=wp-vol]
-text-color=#000000ff
 background-color=#000000ff
 border-color=#ffffffff
 progress-color=#ffffffff
+border-size=2
+border-radius=0
+anchor=bottom-left
 layer=overlay
+outer-margin=10
+
+[app-name=wp-vol]
 history=0
-#anchor=top-center
 # Group all volume notifications together
 group-by=app-name
 # Hide the group-index
