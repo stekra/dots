@@ -4,13 +4,13 @@ vim.opt.linebreak = true
 vim.opt.showbreak = "↪"
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 8
+vim.opt.fillchars = { eob = ' ' }
 vim.opt.mousescroll = "ver:1,hor:1"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.guicursor = "n-v-c-i:block"
-
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
@@ -60,7 +60,7 @@ vim.pack.add({
 
 require("zen-mode").setup({
     window = {
-        width = 80,
+        width = 70,
     }
 })
 vim.keymap.set("n", "<leader>z", ":ZenMode<CR>")
@@ -94,6 +94,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
         vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+        vim.api.nvim_set_hl(0, "ZenBg", { bg = "none" })
     end,
 })
 vim.g.zenbones_compat = 1
