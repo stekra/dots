@@ -11,7 +11,7 @@
 
 .normal-icons,
 .large-icons {
-    -gtk-icon-size: 16px;
+    -gtk-icon-size: 0px;
 }
 
 .box-wrapper {
@@ -27,11 +27,12 @@
 
 .content-container {
     background: @theme_bg_color;
-    border-top: 2px solid @theme_fg_color;
+    /* border-top: 2px solid @theme_fg_color; */
+    margin-top: -10px;
 }
 
 .input placeholder {
-    /* opacity: 0.5; */
+    opacity: 0.5;
 }
 
 .input selection {
@@ -40,12 +41,16 @@
 
 .input {
     caret-color: @theme_fg_color;
-    background: lighter(@window_bg_color);
+    background: @window_bg_color;
     padding: 5px;
 }
 
 .item-box {
     padding: 5px;
+}
+
+.item-text {
+    margin-left: -10px;
 }
 
 child:selected .item-box {

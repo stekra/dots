@@ -8,6 +8,7 @@ hide_action_hints = true
 "symbols" = 1
 
 [placeholders]
+# "default" = { input = "🔎︎", list = "No Results" }
 "default" = { input = "", list = "No Results" }
 
 [keybinds]
