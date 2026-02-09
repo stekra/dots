@@ -1,29 +1,52 @@
-window#waybar {
-    font-family: CommitMono;
+* {
     padding: 0px;
-    font-size: 0px;
+    margin: 0px;
+    border: none;
+    border-radius: 0px;
+    min-height: 0px;
     background: none;
-    min-width: 22px;
-    color: @theme_text_color;
+    box-shadow: none;
+    color: @theme_fg_color;
+    font-size: 12px;
+    font-family: "SF Pro";
 }
 
-.modules-right {
-    font-size: 13px;
-    font-weight: 500;
+#cpu,
+#battery,
+#pulseaudio,
+#bluetooth,
+#network,
+#custom-expand-icon,
+#tray {
+    margin: 0 8px;
 }
 
-.modules-center {
+#workspaces {
+    margin: 0px;
 }
 
-.modules-left {
+#custom-menu {
+    margin-left: 4px;
+    margin-right: 8px;
+    margin-top: -2px;
 }
 
 #clock {
+    margin-left: 8px;
+    margin-right: 4px;
 }
 
-#network, #battery {
-    padding-left: 3px;
+#tray menu,
+tooltip {
+    background: @theme_bg_color;
+    /* padding: 2px; */
+    border: 1.5px solid @theme_fg_color;
 }
+
+tooltip label {
+    text-shadow: none;
+}
+
 
 #battery.warning:not(.charging) {
     color: orange;
@@ -33,30 +56,18 @@ window#waybar {
     color: red;
 }
 
-#tray {
-    padding-left: 1px;
-}
-
-#workspaces {
-}
-
 #workspaces button {
-    padding: 0px;
-    min-height: 2px;
-    min-width: 10px;
-    margin-top: 0px;
-    margin-bottom: 12px;
-    border: none;
-    border-radius: 0px;
-    background: @theme_text_color;
-    opacity: 0.2;
-    transition-property: opacity;
-    transition-duration: 0.15s;
+    margin: 2px;
+    min-width: 0px;
+}
+
+#workspaces button.empty {
+    opacity: 0.5;
 }
 
 #workspaces button.active {
-    opacity: 1;
-    transition-property: opacity;
-    transition-duration: 0.15s;
+}
+
+#workspaces button:hover {
 }
 
