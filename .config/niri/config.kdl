@@ -1,6 +1,6 @@
 spawn-at-startup "wl-clip-persist --clipboard regular"
 spawn-at-startup "walker --gapplication-service"
-spawn-at-startup "launch-walker"
+spawn-at-startup "waybar"
 
 input {
     keyboard {
@@ -71,7 +71,11 @@ layout {
     struts {
         left 20
         right 20
+        top 6
     }
+}
+
+environment {
 }
 
 cursor {
