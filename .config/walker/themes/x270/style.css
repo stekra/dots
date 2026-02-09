@@ -1,0 +1,64 @@
+* {
+    all: unset;
+}
+
+* {
+    font-family: "Mx437 DOS/V re. ANK 24", "Commit Mono", monospace;
+    font-size: 18px;
+    color: @theme_fg_color;
+    background: none;
+}
+
+.normal-icons,
+.large-icons {
+    -gtk-icon-size: 16px;
+}
+
+.box-wrapper {
+    background: @theme_bg_color;
+    border: 2px solid @theme_fg_color;
+    /* padding: 2px; */
+}
+
+.search-container {
+    background: @theme_bg_color;
+    border-bottom: 2px solid @theme_fg_color;
+}
+
+.content-container {
+    background: @theme_bg_color;
+    border-top: 2px solid @theme_fg_color;
+}
+
+.input placeholder {
+    /* opacity: 0.5; */
+}
+
+.input selection {
+    background: alpha(@theme_fg_color, 0.25);
+}
+
+.input {
+    caret-color: @theme_fg_color;
+    background: lighter(@window_bg_color);
+    padding: 5px;
+}
+
+.item-box {
+    padding: 5px;
+}
+
+child:selected .item-box {
+    background: @theme_fg_color;
+}
+
+child:selected .item-text,
+child:selected .item-subtext {
+    color: @theme_bg_color;
+}
+
+.item-subtext {
+    display: none;  /* doesnt work */
+    font-size: 0px; /* lol */
+}
+

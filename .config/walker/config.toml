@@ -1,0 +1,151 @@
+force_keyboard_focus = true
+selection_wrap = true
+theme = "x270"
+hide_quick_activation = true
+hide_action_hints = true
+
+[columns]
+"symbols" = 1
+
+[placeholders]
+"default" = { input = "", list = "No Results" }
+
+[keybinds]
+next = ["Down", "ctrl n"]
+previous = ["Up", "ctrl p"]
+left = ["Left", "ctrl b"]
+right = ["Right", "ctrl f"]
+down = ["Down", "ctrl n"]
+up = ["Up", "ctrl p"]
+quick_activate = []
+
+[providers]
+default = [
+  "desktopapplications",
+  "calc",
+  "websearch",
+]
+empty = ["desktopapplications"]
+ignore_preview = []
+max_results = 50
+
+[[providers.prefixes]]
+prefix = "."
+provider = "files"
+
+[[providers.prefixes]]
+prefix = ":"
+provider = "symbols"
+
+[[providers.prefixes]]
+prefix = ";"
+provider = "unicode"
+
+[[providers.prefixes]]
+prefix = "%"
+provider = "bookmarks"
+
+[[providers.prefixes]]
+prefix = "="
+provider = "calc"
+
+[[providers.prefixes]]
+prefix = "@"
+provider = "websearch"
+
+[[providers.prefixes]]
+prefix = "$"
+provider = "windows"
+
+[providers.actions]
+fallback = [
+  { action = "menus:open", label = "open", after = "Nothing" },
+  { action = "menus:default", label = "run", after = "Close" },
+  { action = "menus:parent", label = "back", bind = "Escape", after = "Nothing" },
+  { action = "erase_history", label = "clear hist", bind = "ctrl h", after = "AsyncReload" },
+]
+
+dmenu = [{ action = "select", default = true, bind = "Return" }]
+
+providerlist = [
+  { action = "activate", default = true, bind = "Return", after = "ClearReload" },
+]
+
+bluetooth = [
+  { action = "find", bind = "ctrl f", after = "AsyncClearReload" },
+  { action = "remove", bind = "ctrl d", after = "AsyncReload" },
+  { action = "trust", bind = "ctrl t", after = "AsyncReload" },
+  { action = "untrust", bind = "ctrl t", after = "AsyncReload" },
+  { action = "pair", bind = "Return", after = "AsyncReload" },
+  { action = "connect", default = true, bind = "Return", after = "AsyncReload" },
+  { action = "disconnect", default = true, bind = "Return", after = "AsyncReload" },
+  { action = "power_on", label = "Power On", bind = "ctrl e", after = "AsyncReload" },
+  { action = "power_off", label = "Power Off", bind = "ctrl e", after = "AsyncReload" },
+]
+
+archlinuxpkgs = [
+  { action = "install", bind = "Return", default = true },
+  { action = "remove", bind = "Return" },
+  { action = "show_all", label = "show all", bind = "ctrl i", after = "AsyncClearReload" },
+  { action = "refresh", label = "refresh", bind = "ctrl r", after = "AsyncReload" },
+  { action = "visit_url", label = "open URL", bind = "ctrl o" },
+  { action = "show_installed", label = "show installed", bind = "ctrl i", after = "AsyncClearReload" },
+]
+
+calc = [
+  { action = "copy", default = true, bind = "Return" },
+  { action = "delete", bind = "ctrl d", after = "AsyncReload" },
+  { action = "delete_all", bind = "ctrl shift d", after = "AsyncReload" },
+  { action = "save", bind = "ctrl s", after = "AsyncClearReload" },
+]
+
+websearch = [
+  { action = "search", default = true, bind = "Return" },
+  { action = "open_url", label = "open url", default = true, bind = "Return" },
+]
+
+desktopapplications = [
+  { action = "start", default = true, bind = "Return" },
+  { action = "start:keep", label = "open+next", bind = "shift Return", after = "KeepOpen" },
+  { action = "new_instance", label = "new instance", bind = "ctrl Return" },
+  { action = "new_instance:keep", label = "new+next", bind = "ctrl alt Return", after = "KeepOpen" },
+  { action = "pin", bind = "ctrl b", after = "AsyncReload" },
+  { action = "unpin", bind = "ctrl u", after = "AsyncReload" },
+  { action = "pinup", bind = "ctrl Up", after = "AsyncReload" },
+  { action = "pindown", bind = "ctrl Down", after = "AsyncReload" },
+]
+
+files = [
+  { action = "open", default = true, bind = "Return" },
+  { action = "opendir", label = "open dir", bind = "ctrl Return" },
+  { action = "copypath", label = "copy path", bind = "ctrl shift c" },
+  { action = "copyfile", label = "copy file", bind = "ctrl c" },
+  { action = "localsend", label = "localsend", bind = "ctrl l" },
+  { action = "refresh_index", label = "reload", bind = "ctrl r", after = "AsyncReload" },
+]
+
+symbols = [
+  { action = "run_cmd", label = "select", default = true, bind = "Return" },
+]
+
+unicode = [
+  { action = "run_cmd", label = "select", default = true, bind = "Return" },
+]
+
+nirisessions = [
+  { action = "start", label = "start", default = true, bind = "Return" },
+  { action = "start_new", label = "start blank", bind = "ctrl Return" },
+]
+
+bookmarks = [
+  { action = "save", bind = "Return", after = "AsyncClearReload" },
+  { action = "open", default = true, bind = "Return" },
+  { action = "delete", bind = "ctrl d", after = "AsyncClearReload" },
+  { action = "change_category", label = "Change category", bind = "ctrl y", after = "Nothing" },
+  { action = "change_browser", label = "Change browser", bind = "ctrl b", after = "Nothing" },
+  { action = "import", label = "Import", bind = "ctrl i", after = "AsyncClearReload" },
+  { action = "create", bind = "ctrl a", after = "AsyncClearReload" },
+  { action = "search", bind = "ctrl a", after = "AsyncClearReload" },
+]
+
+niriactions = [{ action = "execute", bind = "Return" }]

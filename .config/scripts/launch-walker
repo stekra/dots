@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ! pgrep -f "walker --gapplication-service" > /dev/null; then
+  walker --gapplication-service &
+fi
+
+exec walker --width 300 --height 500 -p " $(statusline)" "$@"
