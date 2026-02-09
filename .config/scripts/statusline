@@ -1,0 +1,10 @@
+#!/bin/sh
+
+BAT=$(upower -i "$(upower -e | grep DisplayDevice)" | awk '
+    /percentage/ {p=int($2)}
+    BEGIN {c=""}
+        /state/ && ($2=="charging" || $2=="fully-charged") {c="🗲"}
+    END {print p "%" c}')
+
+exec echo "                    󰁹 $BAT    $(date '+ %a %b %d   󰥔 %R')"
+
