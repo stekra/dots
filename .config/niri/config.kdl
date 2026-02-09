@@ -1,4 +1,6 @@
-spawn-at-startup "waybar"
+spawn-at-startup "wl-clip-persist --clipboard regular"
+spawn-at-startup "walker --gapplication-service"
+spawn-at-startup "launch-walker"
 
 input {
     keyboard {
@@ -31,6 +33,7 @@ input {
 layout {
     gaps 10
     background-color "#333333"
+    always-center-single-column
 
     preset-column-widths {
         proportion 0.66667
@@ -38,28 +41,26 @@ layout {
         proportion 0.33333
     }
 
-    // default-column-width { proportion 1.0; }
-    default-column-width {}
+    default-column-width { proportion 0.66667; }
 
     focus-ring {
         off
         width 2
-        active-color "#0000ff"
+        active-color "#ff3300"
         inactive-color "#e6e6e6e6"
     }
 
     border {
         // off
         width 2
-        // active-color "#ffffffff"
-        active-gradient from="#80c8ff" to="#bbddff" angle=45
-        inactive-color "#000000ff"
+        active-color "#000000ff"
+        inactive-color "#808080ff"
         urgent-color "#9b0000"
     }
 
     shadow {
-        on
-        // draw-behind-window true
+        // on
+        draw-behind-window false
         softness 32
         spread 5
         offset x=0 y=5
@@ -68,11 +69,13 @@ layout {
     }
 
     struts {
-        left 5
-        right 5
-        // top 8
-        // bottom 8
+        left 20
+        right 20
     }
+}
+
+cursor {
+    hide-when-typing
 }
 
 hotkey-overlay {
@@ -85,7 +88,7 @@ screenshot-path "~/Screenshots/Screenshot %Y-%m-%d %H-%M-%S.png"
 
 animations {
     // off
-    slowdown 1
+    // slowdown 0.6
 }
 
 gestures {
@@ -111,8 +114,7 @@ window-rule {
 
 recent-windows {
     highlight {
-        padding 10
-        // corner-radius 8
+        padding 5
     }
 
     previews {
@@ -123,11 +125,11 @@ recent-windows {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+Space hotkey-overlay-title="Run an Application: rofi" { spawn-sh "pkill rofi || rofi -show drun"; }
-    Mod+B hotkey-overlay-title="Run an Browser: firefox" { spawn "firefox"; }
-    Mod+E hotkey-overlay-title="Run a File Browser: nautlius" { spawn "nautilus"; }
+    Mod+T      { spawn "ghostty"; }
+    Mod+Return { spawn "ghostty"; }
+    Mod+Space  { spawn "launch-walker"; }
+    Mod+B      { spawn "firefox"; }
+    Mod+E      { spawn "nautilus"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1 && wp-vol"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && wp-vol"; }
@@ -139,11 +141,11 @@ binds {
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
 
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+6.25%" "-e"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+6.25%" "-e"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "6.25%-" "-e"; }
 
     Mod+O repeat=false { toggle-overview; }
-    Mod+Shift+D repeat=false { spawn "darkman" "toggle"; }
+    Mod+Shift+D repeat=false { spawn-sh "niri msg action do-screen-transition --delay-ms 400 && darkman toggle"; }
 
     Mod+W repeat=false { close-window; }
     Mod+Q repeat=false { close-window; }
@@ -237,9 +239,6 @@ binds {
     Mod+Shift+8 { move-column-to-workspace 8; }
     Mod+Shift+9 { move-column-to-workspace 9; }
 
-    // Switches focus between the current and the previous workspace.
-    // Mod+Tab { focus-workspace-previous; }
-
     // The following binds move the focused window in and out of a column.
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
@@ -255,6 +254,7 @@ binds {
     Mod+Ctrl+F { fullscreen-window; }
 
     Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
 
     // Finer width adjustments.
     Mod+Minus { set-column-width "-10%"; }
@@ -284,11 +284,6 @@ binds {
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+Q { quit; }
-    Ctrl+Alt+Delete { quit; }
-
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
 }
 
 include "overrides.kdl"

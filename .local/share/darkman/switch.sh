@@ -1,15 +1,15 @@
 #!/bin/sh
 case "$1" in
     dark)
-        BG_COLOR="333333"
+        BG_COLOR="222222"
         BORDER_ACTIVE="ffffff"
-        BORDER_INACTIVE="000000"
+        BORDER_INACTIVE="808080"
         ;;
 
     light)
         BG_COLOR="e6e6e6"
         BORDER_ACTIVE="000000"
-        BORDER_INACTIVE="ffffff"
+        BORDER_INACTIVE="808080"
         ;;
 esac
 
