@@ -9,6 +9,7 @@
     "modules-left": [
         "custom/menu",
         "niri/workspaces",
+        "hyprland/workspaces",
     ],
     "modules-center": [
     ],
@@ -27,6 +28,13 @@
         "tooltip": false,
     },
     "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "■",
+            "default": "□",
+        },
+    },
+    "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
             "active": "■",
