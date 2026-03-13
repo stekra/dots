@@ -26,6 +26,7 @@ bind 'set show-all-if-ambiguous on'
 PS1="\[\e[7m\]\u@\h\[\e[0m\] \w $ "
 
 # environment
+EDITOR=nvim
 VISUAL=nvim
 
 # path
