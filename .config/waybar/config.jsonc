@@ -59,7 +59,7 @@
     },
     "tray": {
         "icon-size": 12,
-        // "spacing": 17
+        "spacing": 16
     },
     "bluetooth": {
         "format": "",
@@ -92,7 +92,8 @@
         "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
         "interval": 3,
-        "spacing": 1,
+        // "spacing": 1,
+        "on-click": "ghostty -e gazelle"
     },
     "cpu": {
         "interval": 5,

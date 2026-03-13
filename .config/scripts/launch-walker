@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if ! pgrep -x "elephant" > /dev/null; then
+    elephant &
+fi
+
 if ! pgrep -f "walker --gapplication-service" > /dev/null; then
   walker --gapplication-service &
 fi
