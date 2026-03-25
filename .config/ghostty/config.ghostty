@@ -5,6 +5,7 @@ font-family = CommitMono
 font-style-italic = false
 font-style-bold = false
 font-feature = -calt, -liga, -dlig
+font-size = 16
 theme = dark: iTerm2 Tango Dark, light: iTerm2 Tango Light
 font-thicken = true
 font-thicken-strength = 0
