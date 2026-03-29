@@ -28,6 +28,7 @@ PS1="\[\e[7m\]\u@\h\[\e[0m\] \w $ "
 # environment
 EDITOR=nvim
 VISUAL=nvim
+TERMINAL=/usr/bin/ghostty
 
 # path
 export PATH=$PATH:$HOME/.config/scripts
@@ -45,4 +46,5 @@ alias yeet='rm -rf'
     # dots checkout
     # dots config --local status.showUntrackedFiles no
 alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+alias dlg='lazygit --git-dir=$HOME/.dots/ --work-tree=$HOME'
 

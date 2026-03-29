@@ -1,6 +1,7 @@
 spawn-at-startup "wl-clip-persist --clipboard regular"
 spawn-at-startup "walker --gapplication-service"
 spawn-at-startup "waybar"
+spawn-at-startup "zen-browser --headless"
 
 input {
     keyboard {
@@ -52,7 +53,7 @@ layout {
 
     border {
         // off
-        width 2
+        width 1
         active-color "#000000ff"
         inactive-color "#808080ff"
         urgent-color "#9b0000"
@@ -132,7 +133,7 @@ binds {
     Mod+T      { spawn "ghostty"; }
     Mod+Return { spawn "ghostty"; }
     Mod+Space  { spawn "launch-walker"; }
-    Mod+B      { spawn "firefox"; }
+    Mod+B      { spawn "zen-browser"; }
     Mod+E      { spawn "nautilus"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1 && wp-vol"; }
