@@ -4,7 +4,7 @@ border-color=#000000ff
 progress-color=#000000ff
 border-size=1
 border-radius=0
-margin=20,4,4,4
+margin=8,4,4,4
 
 [app-name=osd]
 anchor=top-center
