@@ -24,8 +24,8 @@
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "active": "■",
-            "default": "□",
+            "active": "󰝤",
+            "default": "󰝣",
         },
     },
     "group/tray-expander": {
@@ -80,7 +80,7 @@
         "tooltip-format-disconnected": "Disconnected",
         "interval": 3,
         // "spacing": 1,
-        "on-click": "ghostty -e gazelle"
+        "on-click": "ghostty -e wlctl"
     },
     "battery": {
         "format": "{capacity}% {icon}",
@@ -100,7 +100,7 @@
         }
     },
     "clock": {
-        "format": "{:%a %b %d %H:%M}",
+        "format": "{:%a %b %d  %H:%M}",
         "tooltip": false,
     },
 }

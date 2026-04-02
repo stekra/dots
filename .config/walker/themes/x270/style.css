@@ -3,7 +3,6 @@
 }
 
 * {
-    font-family: "Mx437 DOS/V re. ANK 24", "Commit Mono", monospace;
     font-size: 18px;
     color: @theme_fg_color;
     background: none;
@@ -16,18 +15,17 @@
 
 .box-wrapper {
     background: @theme_bg_color;
-    border: 1px solid @theme_fg_color;
-    /* padding: 2px; */
+    border: 2px solid @theme_fg_color;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 100px -10px;
 }
 
 .search-container {
     background: @theme_bg_color;
-    border-bottom: 1px solid @theme_fg_color;
+    border-bottom: 2px solid @theme_fg_color;
 }
 
 .content-container {
     background: @theme_bg_color;
-    /* border-top: 1px solid @theme_fg_color; */
     margin-top: -10px;
 }
 

@@ -1,8 +1,9 @@
+font=SFProText 11, SymbolsNerdFont 11
 text-color=#000000ff
 background-color=#ffffffff
 border-color=#000000ff
 progress-color=#000000ff
-border-size=1
+border-size=2
 border-radius=0
 margin=8,4,4,4
 

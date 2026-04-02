@@ -8,7 +8,6 @@ hide_action_hints = true
 "symbols" = 1
 
 [placeholders]
-# "default" = { input = "🔎︎", list = "No Results" }
 "default" = { input = "", list = "No Results" }
 
 [keybinds]
@@ -29,7 +28,7 @@ default = [
 ]
 empty = ["desktopapplications"]
 ignore_preview = []
-max_results = 50
+max_results = 100
 
 [[providers.prefixes]]
 prefix = "."
