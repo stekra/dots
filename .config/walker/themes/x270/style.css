@@ -10,7 +10,9 @@
 
 .normal-icons,
 .large-icons {
-    -gtk-icon-size: 0px;
+    /* -gtk-icon-size: 0px; */
+    /* -gtk-icon-size: 18px; */
+    /* margin-right: 18px; */
 }
 
 .box-wrapper {
@@ -48,7 +50,7 @@
 }
 
 .item-text {
-    margin-left: -10px;
+    margin-left: 10px;
 }
 
 child:selected .item-box {
