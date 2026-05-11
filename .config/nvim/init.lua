@@ -23,7 +23,8 @@ vim.opt.undofile = true
 vim.opt.autoread = true
 vim.opt.clipboard = "unnamedplus"
 
-vim.g.netrw_banner = 0
+-- vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 1
 
 vim.g.mapleader = " "
 
@@ -33,11 +34,13 @@ vim.keymap.set({ "n", "v" }, "n", "nzz")
 vim.keymap.set({ "n", "v" }, "N", "<Nzz")
 vim.keymap.set({ "n", "v" }, "<C-u>", "<C-u>zz")
 vim.keymap.set({ "n", "v" }, "<C-d>", "<C-d>zz")
+vim.keymap.set('x', 'p', '"_dP')
 
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 vim.keymap.set("n", "<leader>e", ":Explore<CR>")
+vim.keymap.set("n", "<C-s>", ":w<CR>")
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<C-c>", "<cmd>nohlsearch<CR>")
@@ -53,10 +56,14 @@ vim.keymap.set("n", "<leader>r", ":w | !./build.sh<CR>")
 vim.pack.add({
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/mason-org/mason.nvim" },
+    { src = "https://github.com/rktjmp/lush.nvim" },
     { src = "https://github.com/zenbones-theme/zenbones.nvim" },
-    { src = "https://github.com/vague2k/vague.nvim" },
     { src = "https://github.com/folke/zen-mode.nvim" },
+    { src = "https://github.com/nvim-mini/mini.nvim" },
 })
+
+require('mini.ai').setup()
+require('mini.surround').setup()
 
 require("zen-mode").setup({
     window = {
@@ -67,13 +74,16 @@ vim.keymap.set("n", "<leader>z", ":ZenMode<CR>")
 
 require("mason").setup()
 
-vim.lsp.enable({ "lua_ls", "clangd", "omnisharp" })
+vim.lsp.enable({
+    "lua_ls",
+    "clangd",
+})
 
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
             workspace = {
-                library = vim.api.nvim_get_runtime_file("", true)
+                library = { vim.env.VIMRUNTIME },
             }
         }
     }
@@ -97,8 +107,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         vim.api.nvim_set_hl(0, "ZenBg", { bg = "none" })
     end,
 })
-vim.g.zenbones_compat = 1
-vim.cmd.colorscheme("zenbones")
--- require("vague").setup({ bold = false, italic = false, })
--- vim.cmd.colorscheme("vague")
+-- vim.cmd.colorscheme("zenwritten")
+vim.cmd.colorscheme("default")
 
