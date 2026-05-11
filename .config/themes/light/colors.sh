@@ -1,0 +1,4 @@
+BORDER="000000"
+BORDER_INACTIVE="bbbbbb"
+BACKGROUND="cccccc"
+

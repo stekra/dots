@@ -1,24 +1,18 @@
 {
     "layer": "top",
-    "position": "top",
-    "exclusive": false,
-    "height": 24,
+    "height": 19,
     "spacing": 0,
-    "margin": "-4 0 0 0",
+    "margin": "0 0 -4 0",
     "reload_style_on_change": true,
     "modules-left": [
         "custom/menu",
-        "niri/workspaces",
         "hyprland/workspaces",
-    ],
-    "modules-center": [
     ],
     "modules-right": [
         "group/tray-expander",
         "bluetooth",
         "pulseaudio",
         "network",
-        // "cpu",
         "battery",
         "clock",
     ],
@@ -27,18 +21,11 @@
         "on-click": "launch-walker",
         "tooltip": false,
     },
-    "niri/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "active": "■",
-            "default": "□",
-        },
-    },
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "active": "■",
-            "default": "□",
+            "active": "󰝤",
+            "default": "󰝣",
         },
     },
     "group/tray-expander": {
@@ -93,11 +80,7 @@
         "tooltip-format-disconnected": "Disconnected",
         "interval": 3,
         // "spacing": 1,
-        "on-click": "ghostty -e gazelle"
-    },
-    "cpu": {
-        "interval": 5,
-        "format": "󰍛",
+        "on-click": "ghostty -e wlctl"
     },
     "battery": {
         "format": "{capacity}% {icon}",
@@ -117,7 +100,7 @@
         }
     },
     "clock": {
-        "format": "{:%a %b %d %H:%M}",
+        "format": "{:%a %b %d  %H:%M}",
         "tooltip": false,
     },
 }
