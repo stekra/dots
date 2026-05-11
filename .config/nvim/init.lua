@@ -14,10 +14,13 @@ vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
+vim.opt.completeopt = { 'menuone', 'noinsert', 'popup' }
+vim.o.pumheight = 5
+vim.o.pumborder = 'single'
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.winborder = "single"
+vim.opt.winborder = 'single'
 
 vim.opt.undofile = true
 vim.opt.autoread = true
@@ -79,6 +82,33 @@ vim.lsp.config("lua_ls", {
     }
 })
 
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(ev)
+        local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+        -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
+        if client:supports_method('textDocument/completion') then
+            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+            -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+            -- client.server_capabilities.completionProvider.triggerCharacters = chars
+
+            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+        end
+
+        -- Auto-format ("lint") on save.
+        -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+        if not client:supports_method('textDocument/willSaveWaitUntil')
+            and client:supports_method('textDocument/formatting') then
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+                buffer = ev.buf,
+                callback = function()
+                    vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
+                end,
+            })
+        end
+    end,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank()
@@ -94,6 +124,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
         vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+        vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
         vim.api.nvim_set_hl(0, "ZenBg", { bg = "none" })
     end,
 })
@@ -101,4 +132,3 @@ vim.g.zenbones_compat = 1
 vim.cmd.colorscheme("zenbones")
 -- require("vague").setup({ bold = false, italic = false, })
 -- vim.cmd.colorscheme("vague")
-

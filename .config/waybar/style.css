@@ -47,7 +47,6 @@ tooltip label {
     text-shadow: none;
 }
 
-
 #battery.warning:not(.charging) {
     color: orange;
 }

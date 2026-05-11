@@ -1,4 +1,5 @@
-font-family = IBM Plex Mono
+font-family = Ioskeley Mono Term
+# font-family = IBM Plex Mono
 # font-family = Mx437 DOS/V re. ANK24
 # font-family = Mx437 Cordata PPC-400
 # font-family = Mx437 IBM VGA 8x16
@@ -7,8 +8,8 @@ font-style-italic = false
 font-style-bold = false
 font-feature = -calt, -liga, -dlig
 font-size = 12
-theme = dark: dark, light: light 
-# theme = dark: iTerm2 Tango Dark, light: iTerm2 Tango Light
+# theme = dark: dark, light: light 
+theme = dark: iTerm2 Tango Dark, light: iTerm2 Tango Light
 font-thicken = true
 font-thicken-strength = 0
 # adjust-cell-height = 4
