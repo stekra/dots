@@ -14,7 +14,7 @@ vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
-vim.opt.completeopt = { 'menuone', 'noinsert', 'popup' }
+vim.opt.completeopt = { 'fuzzy', 'menuone', 'noinsert', 'popup' }
 vim.o.pumheight = 5
 vim.o.pumborder = 'single'
 
@@ -51,7 +51,9 @@ vim.keymap.set("n", "<C-c>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>,", ":e ~/.config/nvim/init.lua<CR>")
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
-vim.keymap.set("n", "gh", vim.diagnostic.open_float)
+vim.keymap.set("n", "gp", vim.diagnostic.open_float)
+vim.keymap.set("n", "gnp", vim.diagnostic.goto_next)
+vim.keymap.set("n", "gpp", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "gh", vim.lsp.buf.hover)
 
 vim.keymap.set("n", "<leader>r", ":w | !./build.sh<CR>")
@@ -108,13 +110,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
         if not client:supports_method('textDocument/willSaveWaitUntil')
             and client:supports_method('textDocument/formatting') then
-            vim.api.nvim_create_autocmd('BufWritePre', {
-                group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
-                buffer = ev.buf,
-                callback = function()
-                    vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
-                end,
-            })
+            vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
+                vim.lsp.buf.format({ bufnr = ev.buf, async = true })
+            end, { buffer = ev.buf, desc = "Format whole file" })
+            -- vim.api.nvim_create_autocmd('BufWritePre', {
+            --     group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+            --     buffer = ev.buf,
+            --     callback = function()
+            --         vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
+            --     end,
+            -- })
         end
     end,
 })
@@ -140,4 +145,3 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 -- vim.cmd.colorscheme("zenwritten")
 vim.cmd.colorscheme("default")
-

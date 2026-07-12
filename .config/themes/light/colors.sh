@@ -1,4 +1,4 @@
-BORDER="000000"
-BORDER_INACTIVE="bbbbbb"
-BACKGROUND="cccccc"
+FG_ACTIVE="000000"
+FG_INACTIVE="bbbbbb"
+BG="cccccc"
 

@@ -6,36 +6,40 @@ CURRENT_FILE="$THEMES_DIR/current"
 # Read current mode, default to dark
 CURRENT=$(cat "$CURRENT_FILE" 2>/dev/null || echo "dark")
 
-# Toggle
 if [[ "$CURRENT" == "dark" ]]; then
-  MODE="light"
+    MODE="light"
 else
-  MODE="dark"
+    MODE="dark"
 fi
 
+# Save new mode
 echo "$MODE" > "$CURRENT_FILE"
 
-# ── GTK ───────────────────────────────────────────────────────────────────────
-gsettings set org.gnome.desktop.interface color-scheme "prefer-$MODE"
-
-# ── Colors ────────────────────────────────────────────────────────────────────
+# Load colors
 source "$THEMES_DIR/$MODE/colors.sh"
 
-# ── Hyprland ──────────────────────────────────────────────────────────────────
-cat > "$HOME/.config/hypr/theme.conf" <<EOF
-general {
-    col.active_border = rgb(${BORDER})
-    col.inactive_border = rgb(${BORDER_INACTIVE})
-}
+# GTK
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$MODE"
 
-misc {
-    background_color = rgb(${BACKGROUND})
-}
+# Waybar
+cat > "$HOME/.config/waybar/theme.css" <<EOF
+@define-color theme_bg_color #${BG};
+@define-color theme_fg_color #${FG_ACTIVE};
 EOF
 
-# ── Reload ────────────────────────────────────────────────────────────────────
+# Hyprland
+cat > "$HOME/.config/hypr/theme.lua" <<EOF
+local theme = {}
+
+theme.active_border = 'rgb(${FG_ACTIVE})'
+theme.inactive_border = 'rgb(${FG_INACTIVE})'
+theme.background_color = 'rgb(${BG})'
+
+return theme
+EOF
+
+# Reload
 hyprctl reload
-pkill -SIGUSR2 waybar
+# pkill -SIGUSR2 waybar # not needed due to live css reload
 
-echo "Switched to $MODE"
-
+echo "Switched to $MODE mode"
