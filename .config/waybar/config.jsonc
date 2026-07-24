@@ -1,8 +1,8 @@
 {
     "layer": "top",
-    "height": 19,
+    "height": 20,
     "spacing": 0,
-    "margin": "0 0 -4 0",
+    "margin": "0 0 0 0",
     "reload_style_on_change": true,
     "modules-left": [
         "custom/menu",
@@ -27,6 +27,7 @@
             "active": "󰝤",
             "default": "󰝣",
         },
+        "on-click": "activate",
     },
     "group/tray-expander": {
         "orientation": "inherit",

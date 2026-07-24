@@ -14,6 +14,13 @@ hl.monitor({
     scale = '1.2',
 })
 
+hl.monitor({
+    output = 'HDMI-A-2',
+    mode = '1920x1080@120',
+    position = 'auto',
+    scale = '1',
+})
+
 hl.env('GDK_BACKEND', 'wayland,x11,*')
 hl.env('QT_QPA_PLATFORM', 'wayland;xcb')
 hl.env('CLUTTER_BACKEND', 'wayland')
@@ -45,15 +52,15 @@ hl.on('hyprland.start', function()
     hl.exec_cmd('walker --gapplication-service')
     hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
     hl.exec_cmd('hyprsunset')
-    hl.exec_cmd('systemctl --user start sunshine') -- lol
+    hl.exec_cmd('sunshine')
     hl.exec_cmd('steam -silent')
 end)
 
 hl.config({
     general = {
-        gaps_in = 2,
-        gaps_out = 4,
-        border_size = 2,
+        gaps_in = 1,
+        gaps_out = 0,
+        border_size = 0,
 
         col = {
             active_border = theme.active_border,
@@ -74,10 +81,10 @@ hl.config({
         rounding = 0,
         rounding_power = 4,
         active_opacity = 1.0,
-        inactive_opacity = 1.0,
+        inactive_opacity = 0.7,
 
         shadow = {
-            enabled = true,
+            enabled = false,
             range = 200,
             render_power = 3,
             offset = { 0, 50 },
@@ -101,7 +108,7 @@ hl.curve('quick',          { type = 'bezier', points = { { 0.15, 0 },    { 0.1, 
 hl.curve("easy", { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
 
 hl.animation({ leaf = "global",     enabled = true, speed = 2, bezier = "easeOutQuint" })
-hl.animation({ leaf = "windowsIn",  enabled = true, speed = 2, spring = "easy",         style = "popin 95%" })
+hl.animation({ leaf = "windowsIn",  enabled = true, speed = 2, bezier = "easeOutQuint", style = "popin 95%" })
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 2, bezier = "linear",       style = "popin 95%" })
 hl.animation({ leaf = "fade",       enabled = true, speed = 1, bezier = "almostLinear" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "easeOutQuint", style = "slidevert" })

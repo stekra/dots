@@ -23,6 +23,10 @@
     margin: 0 8px;
 }
 
+#pulseaudio {
+    margin-right: 12px;
+}
+
 #workspaces {
     margin: 0px;
 }
@@ -30,7 +34,7 @@
 #custom-menu {
     margin-left: 4px;
     margin-right: 8px;
-    margin-top: -2px;
+    margin-top: 1px;
 }
 
 #clock {
@@ -42,7 +46,7 @@
 tooltip {
     background: @theme_bg_color;
     /* padding: 2px; */
-    border: 1.5px solid @theme_fg_color;
+    /* border: 1.5px solid @theme_fg_color; */
 }
 
 tooltip label {
@@ -58,12 +62,12 @@ tooltip label {
 }
 
 #workspaces button {
-    margin: 2px;
+    margin-right: 6px;
     min-width: 0px;
 }
 
 #workspaces button.empty {
-    opacity: 0.5;
+    opacity: 0.3;
 }
 
 #workspaces button.active {
