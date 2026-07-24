@@ -52,8 +52,8 @@ hl.on('hyprland.start', function()
     hl.exec_cmd('walker --gapplication-service')
     hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
     hl.exec_cmd('hyprsunset')
-    hl.exec_cmd('sunshine')
-    hl.exec_cmd('steam -silent')
+    -- hl.exec_cmd('sunshine')
+    -- hl.exec_cmd('steam -silent')
 end)
 
 hl.config({
@@ -156,12 +156,6 @@ hl.config({
     }
 })
 
-hl.gesture({
-    fingers = 3,
-    direction = 'vertical',
-    action = 'workspace',
-})
-
 hl.config({
     binds = {
         scroll_event_delay = 0,
@@ -173,6 +167,7 @@ hl.config({
 
     cursor = {
         hide_on_key_press = true,
+        zoom_disable_aa = true,
     },
 
     ecosystem = {
@@ -220,6 +215,12 @@ hl.bind('SUPER + SHIFT + h', hl.dsp.layout('consume_or_expel prev'))
 hl.bind('SUPER + SHIFT + right', hl.dsp.layout('consume_or_expel next'))
 hl.bind('SUPER + SHIFT + l', hl.dsp.layout('consume_or_expel next'))
 
+hl.gesture({ fingers = 3, direction = 'horizontal', action = 'scroll_move' })
+hl.gesture({ fingers = 4, direction = 'horizontal', action = 'scroll_move' })
+
+hl.gesture({ fingers = 3, direction = 'vertical', action = 'workspace' })
+hl.gesture({ fingers = 4, direction = 'vertical', action = 'workspace' })
+
 for i = 1, 10 do
     local key = i % 10
     hl.bind('SUPER' .. ' + ' .. key,   hl.dsp.focus({ workspace = i}))
@@ -228,6 +229,26 @@ end
 
 hl.bind('SUPER + mouse_down', hl.dsp.focus({ workspace = 'e+1' }))
 hl.bind('SUPER + mouse_up',   hl.dsp.focus({ workspace = 'e-1' }))
+
+hl.bind('SUPER + mouse:272', hl.dsp.window.drag(),   { mouse = true })
+hl.bind('SUPER + mouse:273', hl.dsp.window.resize(), { mouse = true })
+
+hl.gesture({ fingers = 2, mods = 'SUPER', direction = 'pinch', action = 'cursorZoom', zoom_level = 1, mode = 'live' })
+
+local function zoom(offset)
+    local current = hl.get_config('cursor.zoom_factor')
+    if offset ~= nil then
+        current = current + offset
+    else
+        current = 1
+    end
+    current = math.max(1, math.min(5, current))
+    hl.config({ cursor = { zoom_factor = current } })
+end
+hl.bind('SUPER + equal', function() zoom(0.3) end, { repeating = true })
+hl.bind('SUPER + minus', function() zoom(-0.3) end, { repeating = true })
+hl.bind('CTRL + mouse_down', function() zoom(0.3) end)
+hl.bind('CTRL + mouse_up', function() zoom(-0.3) end)
 
 hl.bind('SUPER + I', hl.dsp.exec_cmd('hyprpicker -a'))
 hl.bind('SUPER + CTRL + Q', hl.dsp.exec_cmd('hyprlock'))
@@ -280,5 +301,16 @@ hl.window_rule({
         class = 'steam_app|gamescope',
     },
     immediate = true,
+})
+
+hl.window_rule({
+    name = 'float-sushi-nautilus-preview',
+    match = {
+        class = 'org.gnome.NautilusPreviewer',
+    },
+    float = true,
+    center = true,
+    size = { 'monitor_w * 0.7', 'monitor_h * 0.7' },
+    no_initial_focus = true,
 })
 
