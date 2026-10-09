@@ -51,9 +51,9 @@ hl.on('hyprland.start', function()
     hl.exec_cmd('wl-clip-persist --clipboard regular')
     hl.exec_cmd('walker --gapplication-service')
     hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
-    hl.exec_cmd('hyprsunset')
-    -- hl.exec_cmd('sunshine')
-    -- hl.exec_cmd('steam -silent')
+    -- hl.exec_cmd('hyprsunset')
+    hl.exec_cmd('sunshine')
+    hl.exec_cmd('steam -silent')
 end)
 
 hl.config({
@@ -78,20 +78,25 @@ hl.config({
     },
 
     decoration = {
-        rounding = 0,
+        rounding = 8,
         rounding_power = 4,
         active_opacity = 1.0,
-        inactive_opacity = 0.7,
+        inactive_opacity = 1.0,
 
         shadow = {
-            enabled = false,
+            enabled = true,
             range = 200,
             render_power = 3,
-            offset = { 0, 50 },
+            offset = { 0, 30 },
             color = 'rgba(00000044)',
             color_inactive = 'rgba(00000022)',
             scale = 0.9,
         },
+
+        motion_blur = {
+            enabled = true,
+            samples = 2,
+        }
     },
 
     animations = {
@@ -142,6 +147,7 @@ hl.config({
 hl.config({
     input = {
         kb_layout = 'us',
+        -- kb_options = 'ctrl:nocaps',
         kb_options = 'ctrl:nocaps, altwin:swap_alt_win',
         repeat_rate = 30,
         repeat_delay = 180,
@@ -155,6 +161,11 @@ hl.config({
             tap_to_click = false,
         },
     }
+})
+
+hl.device({
+    name = "stefan’s-magic-keyboard",
+    kb_options = 'ctrl:nocaps',
 })
 
 hl.config({
