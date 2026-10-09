@@ -38,6 +38,15 @@ theme.background_color = 'rgb(${BG})'
 return theme
 EOF
 
+# Rofi
+cat > "$HOME/.config/rofi/colors.rasi" <<EOF
+* {
+    fg:     #${FG_ACTIVE};
+    fg-dim: #${FG_INACTIVE};
+    bg:     #${BG};
+}
+EOF
+
 # Reload
 hyprctl reload
 # pkill -SIGUSR2 waybar # not needed due to live css reload

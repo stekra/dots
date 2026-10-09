@@ -52,8 +52,8 @@ hl.on('hyprland.start', function()
     hl.exec_cmd('walker --gapplication-service')
     hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
     -- hl.exec_cmd('hyprsunset')
-    hl.exec_cmd('sunshine')
-    hl.exec_cmd('steam -silent')
+    -- hl.exec_cmd('sunshine')
+    -- hl.exec_cmd('steam -silent')
 end)
 
 hl.config({
@@ -81,14 +81,14 @@ hl.config({
         rounding = 8,
         rounding_power = 4,
         active_opacity = 1.0,
-        inactive_opacity = 1.0,
+        inactive_opacity = 0.8,
 
         shadow = {
             enabled = true,
             range = 200,
             render_power = 3,
             offset = { 0, 30 },
-            color = 'rgba(00000044)',
+            color = 'rgba(22222244)',
             color_inactive = 'rgba(00000022)',
             scale = 0.9,
         },
@@ -109,15 +109,14 @@ hl.curve('easeInOutCubic', { type = 'bezier', points = { { 0.65, 0.05 }, { 0.36,
 hl.curve('linear',         { type = 'bezier', points = { { 0, 0 },       { 1, 1 }    } })
 hl.curve('almostLinear',   { type = 'bezier', points = { { 0.5, 0.5 },   { 0.75, 1 } } })
 hl.curve('quick',          { type = 'bezier', points = { { 0.15, 0 },    { 0.1, 1 }  } })
+hl.curve('bounce',         { type = 'spring', mass = 1, stiffness = 2000, dampening = 50 })
 
-hl.curve("easy", { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
-
-hl.animation({ leaf = "global",     enabled = true, speed = 2, bezier = "easeOutQuint" })
-hl.animation({ leaf = "windowsIn",  enabled = true, speed = 2, bezier = "easeOutQuint", style = "popin 95%" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 2, bezier = "linear",       style = "popin 95%" })
-hl.animation({ leaf = "fade",       enabled = true, speed = 1, bezier = "almostLinear" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "easeOutQuint", style = "slidevert" })
-hl.animation({ leaf = "layers",     enabled = false })
+hl.animation({ leaf = 'global',     enabled = true, speed = 2, bezier = 'easeOutQuint' })
+hl.animation({ leaf = 'windowsIn',  enabled = true, speed = 2, bezier = 'easeOutQuint', style = 'popin 95%' })
+hl.animation({ leaf = 'windowsOut', enabled = true, speed = 2, bezier = 'linear',       style = 'popin 95%' })
+hl.animation({ leaf = 'fade',       enabled = true, speed = 1, bezier = 'almostLinear' })
+hl.animation({ leaf = 'workspaces', enabled = true, speed = 3, bezier = 'easeOutQuint', style = 'slidevert' })
+hl.animation({ leaf = 'layers',     enabled = true, speed = 1, spring = 'bounce',       style = 'popin 80%' })
 
 hl.config({
     dwindle = {
@@ -197,7 +196,10 @@ hl.bind('SUPER + B', hl.dsp.exec_cmd('firefox'))
 hl.bind('SUPER + Y', hl.dsp.exec_cmd('firefox --new-window https://www.youtube.com/feed/subscriptions'))
 hl.bind('SUPER + F', hl.dsp.window.fullscreen())
 hl.bind('SUPER + SHIFT + F', hl.dsp.window.float())
-hl.bind('SUPER + SPACE', hl.dsp.exec_cmd('launch-walker'))
+-- hl.bind('SUPER + SPACE', hl.dsp.exec_cmd('fuzzel'))
+hl.bind('SUPER + SPACE', hl.dsp.exec_cmd('pkill rofi || rofi -show drun'))
+hl.bind('SUPER + CONTROL + SPACE', hl.dsp.exec_cmd('pkill rofi || rofimoji'))
+hl.bind('SUPER + SHIFT + SPACE', hl.dsp.exec_cmd('pkill rofi || rofi -show calc -theme-str "listview { enabled: false; }"'))
 hl.bind('SUPER + P', hl.dsp.window.pseudo())
 hl.bind('SUPER + R', hl.dsp.layout('colresize +conf'))
 hl.bind('SUPER + SHIFT + R', hl.dsp.layout('colresize -conf'))
