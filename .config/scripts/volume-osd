@@ -1,8 +1,18 @@
 #!/bin/bash
+# usage: volume-osd [up|down]
 
-volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
-volume=$(echo "$volume" | awk '{print $2}')
-volume=$(echo "( $volume * 100 ) / 1" | bc)
+# drop key repeats that arrive while the previous one is still running
+exec 9>"${XDG_RUNTIME_DIR:-/tmp}/volume-osd.lock"
+flock -n 9 || exit 0
 
-notify-send -t 1000 -a 'osd' -h int:value:$volume " "
+case "$1" in
+    up)   wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ ;;
+    down) wpctl set-volume      @DEFAULT_AUDIO_SINK@ 5%- ;;
+esac
 
+id_file="${XDG_RUNTIME_DIR:-/tmp}/osd-notify-id"
+id=$(cat "$id_file" 2>/dev/null)
+
+volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%d", $2 * 100 + 0.5}')
+
+notify-send -t 1000 -a 'osd' -h int:value:$volume -p ${id:+-r "$id"} " " > "$id_file"

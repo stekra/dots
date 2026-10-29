@@ -18,7 +18,7 @@
     ],
     "custom/menu": {
         "format": "ス",
-        "on-click": "launch-walker",
+        "on-click": "pkill rofi || rofi -show drun",
         "tooltip": false,
     },
     "hyprland/workspaces": {

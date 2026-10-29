@@ -1,0 +1,21 @@
+#!/bin/bash
+# usage: brightness-osd [up|down]
+
+# drop key repeats that arrive while the previous one is still running
+exec 9>"${XDG_RUNTIME_DIR:-/tmp}/brightness-osd.lock"
+flock -n 9 || exit 0
+
+case "$1" in
+    up)   brightnessctl -q -e4 -n2 set 5%+ ;;
+    down) brightnessctl -q -e4 -n2 set 5%- ;;
+esac
+
+id_file="${XDG_RUNTIME_DIR:-/tmp}/osd-notify-id"
+id=$(cat "$id_file" 2>/dev/null)
+
+backlight=$(ls -d /sys/class/backlight/* | head -1)
+# undo brightnessctl's -e4 curve so each step moves the bar by the same amount
+percent=$(awk -v b="$(<"$backlight/brightness")" -v m="$(<"$backlight/max_brightness")" \
+    'BEGIN { printf "%d", 100 * (b / m) ^ (1 / 4) + 0.5 }')
+
+notify-send -t 1000 -a 'osd' -h int:value:$percent -p ${id:+-r "$id"} " " > "$id_file"

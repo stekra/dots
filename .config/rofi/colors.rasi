@@ -1,0 +1,6 @@
+* {
+    fg:       #000000;
+    fg-dim:   #bbbbbb66;
+    bg:       #cccccc66;
+    bg-solid: #cccccc;
+}
