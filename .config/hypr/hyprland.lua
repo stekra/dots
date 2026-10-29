@@ -43,14 +43,17 @@ hl.env('HYPRCURSOR_SIZE', '28')
 hl.env('XCURSOR_THEME', 'macos-tahoe-cursor')
 hl.env('XCURSOR_SIZE', '28')
 
-hl.env('TERMINAL', 'ghostty')
-hl.env('TERM', 'ghostty')
+hl.env('TERMINAL', 'footclient')
+hl.env('TERM', 'footclient')
+
+hl.env('GTK_IM_MODULE', 'simple')
 
 hl.on('hyprland.start', function()
     hl.exec_cmd('waybar')
     hl.exec_cmd('wl-clip-persist --clipboard regular')
     hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
-    -- hl.exec_cmd('hyprsunset')
+    hl.exec_cmd('hyprsunset')
+    hl.exec_cmd('gnome-keyring-daemon --start -- components=secret')
     -- hl.exec_cmd('sunshine')
     -- hl.exec_cmd('steam -silent')
 end)
@@ -84,12 +87,17 @@ hl.config({
 
         shadow = {
             enabled = true,
-            range = 200,
-            render_power = 3,
-            offset = { 0, 30 },
+            range = 100,
+            render_power = 2,
+            offset = { 0, 20 },
             color = 'rgba(22222244)',
             color_inactive = 'rgba(00000022)',
             scale = 0.9,
+        },
+
+        blur = {
+            enabled = true,
+            passes = 2,
         },
 
         motion_blur = {
@@ -103,19 +111,20 @@ hl.config({
     },
 })
 
-hl.curve('easeOutQuint',   { type = 'bezier', points = { { 0.23, 1 },    { 0.32, 1 } } })
-hl.curve('easeInOutCubic', { type = 'bezier', points = { { 0.65, 0.05 }, { 0.36, 1 } } })
-hl.curve('linear',         { type = 'bezier', points = { { 0, 0 },       { 1, 1 }    } })
-hl.curve('almostLinear',   { type = 'bezier', points = { { 0.5, 0.5 },   { 0.75, 1 } } })
-hl.curve('quick',          { type = 'bezier', points = { { 0.15, 0 },    { 0.1, 1 }  } })
-hl.curve('bounce',         { type = 'spring', mass = 1, stiffness = 2000, dampening = 50 })
+hl.curve('easeOutQuint', { type = 'bezier', points = { { 0.23, 1 }, { 0.32, 1 } } })
+hl.curve('linear',       { type = 'bezier', points = { { 0,    0 }, { 1,    1 } } })
 
-hl.animation({ leaf = 'global',     enabled = true, speed = 2, bezier = 'easeOutQuint' })
-hl.animation({ leaf = 'windowsIn',  enabled = true, speed = 2, bezier = 'easeOutQuint', style = 'popin 95%' })
-hl.animation({ leaf = 'windowsOut', enabled = true, speed = 2, bezier = 'linear',       style = 'popin 95%' })
-hl.animation({ leaf = 'fade',       enabled = true, speed = 1, bezier = 'almostLinear' })
-hl.animation({ leaf = 'workspaces', enabled = true, speed = 3, bezier = 'easeOutQuint', style = 'slidevert' })
-hl.animation({ leaf = 'layers',     enabled = true, speed = 1, spring = 'bounce',       style = 'popin 80%' })
+hl.curve('spring',       { type = 'spring', mass = 1, stiffness = 1250, dampening = 65 })
+hl.curve('spring-stiff', { type = 'spring', mass = 1, stiffness = 1560, dampening = 75 })
+hl.curve('bounce',       { type = 'spring', mass = 1, stiffness = 1800, dampening = 50 })
+
+hl.animation({ leaf = 'global',      enabled = true, speed = 1, spring = 'spring' })
+hl.animation({ leaf = 'windowsMove', enabled = true, speed = 1, spring = 'spring' })
+hl.animation({ leaf = 'workspaces',  enabled = true, speed = 1, spring = 'spring-stiff', style = 'slidevert' })
+hl.animation({ leaf = 'windowsIn',   enabled = true, speed = 1, spring = 'spring',       style = 'popin 90%' })
+hl.animation({ leaf = 'windowsOut',  enabled = true, speed = 1, bezier = 'linear',       style = 'popin 90%' })
+hl.animation({ leaf = 'fade',        enabled = true, speed = 1, bezier = 'easeOutQuint' })
+hl.animation({ leaf = 'layers',      enabled = true, speed = 1, spring = 'bounce',       style = 'popin 80%' })
 
 hl.config({
     dwindle = {
@@ -144,11 +153,11 @@ hl.config({
 
 hl.config({
     input = {
-        kb_layout = 'us',
+        kb_layout = 'usmac',
         -- kb_options = 'ctrl:nocaps',
         kb_options = 'ctrl:nocaps, altwin:swap_alt_win',
         repeat_rate = 30,
-        repeat_delay = 180,
+        repeat_delay = 225,
         follow_mouse = 2,
         sensitivity = 0,
         -- accel_profile = 'flat',
@@ -186,8 +195,10 @@ hl.config({
     },
 })
 
-hl.bind('SUPER + Return', hl.dsp.exec_cmd('ghostty --gtk-single-instance=true'))
-hl.bind('SUPER + T', hl.dsp.exec_cmd('ghostty --gtk-single-instance=true'))
+hl.bind('SUPER + Return', hl.dsp.exec_cmd('footclient'))
+hl.bind('SUPER + T', hl.dsp.exec_cmd('footclient'))
+-- hl.bind('SUPER + Return', hl.dsp.exec_cmd('ghostty --gtk-single-instance=true'))
+-- hl.bind('SUPER + T', hl.dsp.exec_cmd('ghostty --gtk-single-instance=true'))
 hl.bind('SUPER + W', hl.dsp.window.close())
 hl.bind('SUPER + Q', hl.dsp.window.kill())
 hl.bind('SUPER + E', hl.dsp.exec_cmd('nautilus --new-window'))
@@ -201,31 +212,22 @@ hl.bind('SUPER + SHIFT + SPACE', hl.dsp.exec_cmd('pkill rofi || rofi -show calc 
 hl.bind('SUPER + P', hl.dsp.window.pseudo())
 hl.bind('SUPER + R', hl.dsp.layout('colresize +conf'))
 hl.bind('SUPER + SHIFT + R', hl.dsp.layout('colresize -conf'))
+hl.bind('SUPER + SHIFT + C', hl.dsp.layout('center'))
 hl.bind('SUPER + SHIFT + D', hl.dsp.exec_cmd('~/.config/themes/toggle.sh'))
 
-local function bind_win(direction, keys)
-    local dir = {
-        left =  { x = -50, y = 0,   relative = true },
-        right = { x = 50,  y = 0,   relative = true },
-        up =    { x = 0,   y = -50, relative = true },
-        down =  { x = 0,   y = 50,  relative = true },
-    }
-
-    for _, key in ipairs(keys) do
-        hl.bind('SUPER + ' .. key, hl.dsp.focus({ direction = direction }))
-        hl.bind('SUPER + CTRL + ' .. key, hl.dsp.window.resize(dir[direction]))
+for _, d in ipairs {
+    { 'left',  'h', -50,   0, hl.dsp.layout('consume_or_expel prev') },
+    { 'right', 'l',  50,   0, hl.dsp.layout('consume_or_expel next') },
+    { 'up',    'k',   0, -50, hl.dsp.window.move { direction = 'u' } },
+    { 'down',  'j',   0,  50, hl.dsp.window.move { direction = 'd' } },
+} do
+    local dir, vim, x, y, shift = table.unpack(d)
+    for _, key in ipairs { dir, vim } do
+        hl.bind('SUPER + ' .. key,         hl.dsp.focus { direction = dir })
+        hl.bind('SUPER + CTRL + ' .. key,  hl.dsp.window.resize { x = x, y = y, relative = true })
+        hl.bind('SUPER + SHIFT + ' .. key, shift)
     end
 end
-
-bind_win('left',  { 'left',  'h' })
-bind_win('right', { 'right', 'l' })
-bind_win('up',    { 'up',    'k' })
-bind_win('down',  { 'down',  'j' })
-
-hl.bind('SUPER + SHIFT + left', hl.dsp.layout('consume_or_expel prev'))
-hl.bind('SUPER + SHIFT + h', hl.dsp.layout('consume_or_expel prev'))
-hl.bind('SUPER + SHIFT + right', hl.dsp.layout('consume_or_expel next'))
-hl.bind('SUPER + SHIFT + l', hl.dsp.layout('consume_or_expel next'))
 
 hl.gesture({ fingers = 3, direction = 'horizontal', action = 'scroll_move' })
 hl.gesture({ fingers = 4, direction = 'horizontal', action = 'scroll_move' })
@@ -265,15 +267,16 @@ hl.bind('CTRL + mouse_up', function() zoom(-0.3) end)
 hl.bind('SUPER + I', hl.dsp.exec_cmd('hyprpicker -a'))
 hl.bind('SUPER + CTRL + Q', hl.dsp.exec_cmd('hyprlock'))
 
-hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd('wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && volume-osd'), { locked = true, repeating = true })
-hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd('wpctl set-volume      @DEFAULT_AUDIO_SINK@ 5%- && volume-osd'), { locked = true, repeating = true })
+hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd('volume-osd up'), { locked = true, repeating = true })
+hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd('volume-osd down'), { locked = true, repeating = true })
+hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd('volume-osd down'), { locked = true, repeating = true })
 hl.bind('XF86AudioMute',        hl.dsp.exec_cmd('wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'),      { locked = true, repeating = true })
 hl.bind('XF86AudioMicMute',     hl.dsp.exec_cmd('wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'),    { locked = true, repeating = true })
-hl.bind('XF86MonBrightnessUp',  hl.dsp.exec_cmd('brightnessctl -e4 -n2 set 5%+ && brightness-osd'), { locked = true, repeating = true })
-hl.bind('XF86MonBrightnessDown',hl.dsp.exec_cmd('brightnessctl -e4 -n2 set 5%- && brightness-osd'), { locked = true, repeating = true })
+hl.bind('XF86MonBrightnessUp',  hl.dsp.exec_cmd('brightness-osd up'), { locked = true, repeating = true })
+hl.bind('XF86MonBrightnessDown',hl.dsp.exec_cmd('brightness-osd down'), { locked = true, repeating = true })
 
-hl.bind('Pause',       hl.dsp.exec_cmd('wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && volume-osd'), { locked = true, repeating = true })
-hl.bind('Scroll_Lock', hl.dsp.exec_cmd('wpctl set-volume      @DEFAULT_AUDIO_SINK@ 5%- && volume-osd'), { locked = true, repeating = true })
+hl.bind('Pause',       hl.dsp.exec_cmd('volume-osd up'), { locked = true, repeating = true })
+hl.bind('Scroll_Lock', hl.dsp.exec_cmd('volume-osd down'), { locked = true, repeating = true })
 
 hl.bind('XF86AudioNext',  hl.dsp.exec_cmd('playerctl next'),       { locked = true })
 hl.bind('XF86AudioPause', hl.dsp.exec_cmd('playerctl play-pause'), { locked = true })
@@ -324,5 +327,19 @@ hl.window_rule({
     center = true,
     size = { 'monitor_w * 0.7', 'monitor_h * 0.7' },
     no_initial_focus = true,
+})
+
+hl.layer_rule({
+    name  = 'rofi-blur',
+    match = { namespace = '^rofi$' },
+    blur = true,
+    ignore_alpha = 0.01,
+})
+
+hl.layer_rule({
+    name  = 'mako-blur',
+    match = { namespace = '^notifications$' },
+    blur = true,
+    ignore_alpha = 0.01,
 })
 

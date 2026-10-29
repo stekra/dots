@@ -1,16 +1,24 @@
-font=SFProText 11, SymbolsNerdFont 11
+font=SFProText 10, SymbolsNerdFont 10
 text-color=#000000ff
-background-color=#ffffffff
-border-color=#000000ff
+background-color=#cccccc66
+border-color=#bbbbbbff
 progress-color=#000000ff
 border-size=2
-border-radius=0
-margin=8,4,4,4
+border-radius=24
+max-icon-size=48
+default-timeout=5000
+max-visible=3
+height=70
+padding=5,0
 
 [app-name=osd]
 anchor=top-center
 text-color=#ffffffff
+border-radius=12
+margin=8,0
+padding=0
 history=0
 group-by=app-name
-format=<b>%s</b>\n%b
+format=<b>%s</b>
+layer=overlay
 

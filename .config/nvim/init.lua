@@ -1,7 +1,7 @@
 -- vim.opt.signcolumn = "yes:1"
 vim.opt.signcolumn = "no"
 vim.opt.linebreak = true
-vim.opt.showbreak = "↪"
+vim.opt.showbreak = "↪ "
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 8
 vim.opt.fillchars = { eob = ' ' }

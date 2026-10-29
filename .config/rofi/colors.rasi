@@ -1,5 +1,6 @@
 * {
-    fg:     #ffffff;
-    fg-dim: #767676;
-    bg:     #222222;
+    fg:       #000000;
+    fg-dim:   #bbbbbb66;
+    bg:       #cccccc66;
+    bg-solid: #cccccc;
 }
