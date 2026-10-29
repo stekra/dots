@@ -222,13 +222,13 @@ for _, d in ipairs {
     { 'down',  'j',   0,  50, hl.dsp.window.move { direction = 'd' } },
 } do
     local dir, vim, x, y, shift = table.unpack(d)
+    local focus = hl.dsp.layout('focus ' .. dir:sub(1, 1))
     for _, key in ipairs { dir, vim } do
-        hl.bind('SUPER + ' .. key,         hl.dsp.focus { direction = dir })
+        hl.bind('SUPER + ' .. key,         focus)
         hl.bind('SUPER + CTRL + ' .. key,  hl.dsp.window.resize { x = x, y = y, relative = true })
         hl.bind('SUPER + SHIFT + ' .. key, shift)
     end
 end
-
 hl.gesture({ fingers = 3, direction = 'horizontal', action = 'scroll_move' })
 hl.gesture({ fingers = 4, direction = 'horizontal', action = 'scroll_move' })
 
