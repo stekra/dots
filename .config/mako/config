@@ -9,7 +9,7 @@ max-icon-size=48
 default-timeout=5000
 max-visible=3
 height=70
-padding=5,0
+padding=5,-500
 
 [app-name=osd]
 anchor=top-center
