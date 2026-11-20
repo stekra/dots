@@ -65,6 +65,7 @@ vim.pack.add({
     { src = "https://github.com/zenbones-theme/zenbones.nvim" },
     { src = "https://github.com/folke/zen-mode.nvim" },
     { src = "https://github.com/nvim-mini/mini.nvim" },
+    { src = "https://github.com/e-ink-colorscheme/e-ink.nvim" },
 })
 
 require('mini.ai').setup()
@@ -144,4 +145,5 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end,
 })
 -- vim.cmd.colorscheme("zenwritten")
-vim.cmd.colorscheme("default")
+-- vim.cmd.colorscheme("default")
+vim.cmd.colorscheme("e-ink")
