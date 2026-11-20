@@ -123,7 +123,7 @@ hl.curve('bounce',       { type = 'spring', mass = 1, stiffness = 1800, dampenin
 hl.animation({ leaf = 'global',      enabled = true, speed = 1, spring = 'spring' })
 hl.animation({ leaf = 'windowsMove', enabled = true, speed = 1, spring = 'spring' })
 hl.animation({ leaf = 'workspaces',  enabled = true, speed = 1, spring = 'spring-stiff', style = 'slidevert' })
-hl.animation({ leaf = 'windowsIn',   enabled = true, speed = 1, spring = 'spring',       style = 'popin 90%' })
+hl.animation({ leaf = 'windowsIn',   enabled = true, speed = 1, spring = 'spring',       style = 'popin 95%' })
 hl.animation({ leaf = 'windowsOut',  enabled = true, speed = 1, bezier = 'linear',       style = 'popin 90%' })
 hl.animation({ leaf = 'fade',        enabled = true, speed = 1, bezier = 'easeOutQuint' })
 hl.animation({ leaf = 'layers',      enabled = true, speed = 1, spring = 'bounce',       style = 'popin 80%' })
