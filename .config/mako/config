@@ -1,8 +1,8 @@
 font=SFProText 10, SymbolsNerdFont 10
-text-color=#000000ff
-background-color=#cccccc66
-border-color=#bbbbbbff
-progress-color=#000000ff
+text-color=#ffffffff
+background-color=#22222266
+border-color=#767676ff
+progress-color=#ffffffff
 border-size=2
 border-radius=24
 max-icon-size=48
@@ -13,7 +13,7 @@ padding=5,-500
 
 [app-name=osd]
 anchor=top-center
-text-color=#ffffffff
+text-color=#000000ff
 border-radius=12
 margin=8,0
 padding=0

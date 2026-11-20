@@ -1,0 +1,14 @@
+#!/bin/bash
+
+clients=$(hyprctl clients -j)
+
+if ! grep -q '"class": "firefox"' <<< "$clients"; then
+    hyprctl dispatch 'hl.dsp.exec_cmd("firefox", { workspace = "special:firefox silent" })' > /dev/null
+    for _ in $(seq 100); do
+        hyprctl clients -j | grep -q '"class": "firefox"' && break
+        sleep 0.1
+    done
+fi
+
+exec firefox "$@"
+
