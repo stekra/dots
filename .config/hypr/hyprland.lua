@@ -49,10 +49,10 @@ hl.env('TERM', 'footclient')
 hl.env('GTK_IM_MODULE', 'simple')
 
 hl.on('hyprland.start', function()
-    hl.exec_cmd('qs')   -- quickshell: island, OSD, notifications
-    -- hl.exec_cmd('waybar')
+    hl.exec_cmd('qs')
     hl.exec_cmd('wl-clip-persist --clipboard regular')
-    hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
+    -- hl.exec_cmd('waybar')
+    -- hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
     hl.exec_cmd('hyprsunset')
     hl.exec_cmd('gnome-keyring-daemon --start -- components=secret')
     -- preload Firefox with a parked window so firefox-open is fast
