@@ -49,7 +49,8 @@ hl.env('TERM', 'footclient')
 hl.env('GTK_IM_MODULE', 'simple')
 
 hl.on('hyprland.start', function()
-    hl.exec_cmd('waybar')
+    hl.exec_cmd('qs')   -- quickshell: island, OSD, notifications
+    -- hl.exec_cmd('waybar')
     hl.exec_cmd('wl-clip-persist --clipboard regular')
     hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
     hl.exec_cmd('hyprsunset')
@@ -62,8 +63,8 @@ end)
 
 hl.config({
     general = {
-        gaps_in = 1,
-        gaps_out = 0,
+        gaps_in = 2,
+        gaps_out = { top = 4, left = 0, right = 0, bottom = 4 },
         border_size = 0,
 
         col = {
@@ -269,16 +270,17 @@ hl.bind('CTRL + mouse_up', function() zoom(-0.3) end)
 hl.bind('SUPER + I', hl.dsp.exec_cmd('hyprpicker -a'))
 hl.bind('SUPER + CTRL + Q', hl.dsp.exec_cmd('hyprlock'))
 
-hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd('volume-osd up'), { locked = true, repeating = true })
-hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd('volume-osd down'), { locked = true, repeating = true })
-hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd('volume-osd down'), { locked = true, repeating = true })
+-- volume/brightness steps are done by quickshell, which also shows the OSD;
+-- these keys need quickshell running
+hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd('qs ipc call volume up'),   { locked = true, repeating = true })
+hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd('qs ipc call volume down'), { locked = true, repeating = true })
 hl.bind('XF86AudioMute',        hl.dsp.exec_cmd('wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'),      { locked = true, repeating = true })
 hl.bind('XF86AudioMicMute',     hl.dsp.exec_cmd('wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'),    { locked = true, repeating = true })
-hl.bind('XF86MonBrightnessUp',  hl.dsp.exec_cmd('brightness-osd up'), { locked = true, repeating = true })
-hl.bind('XF86MonBrightnessDown',hl.dsp.exec_cmd('brightness-osd down'), { locked = true, repeating = true })
+hl.bind('XF86MonBrightnessUp',  hl.dsp.exec_cmd('qs ipc call brightness up'),   { locked = true, repeating = true })
+hl.bind('XF86MonBrightnessDown',hl.dsp.exec_cmd('qs ipc call brightness down'), { locked = true, repeating = true })
 
-hl.bind('Pause',       hl.dsp.exec_cmd('volume-osd up'), { locked = true, repeating = true })
-hl.bind('Scroll_Lock', hl.dsp.exec_cmd('volume-osd down'), { locked = true, repeating = true })
+hl.bind('Pause',       hl.dsp.exec_cmd('qs ipc call volume up'),   { locked = true, repeating = true })
+hl.bind('Scroll_Lock', hl.dsp.exec_cmd('qs ipc call volume down'), { locked = true, repeating = true })
 
 hl.bind('XF86AudioNext',  hl.dsp.exec_cmd('playerctl next'),       { locked = true })
 hl.bind('XF86AudioPause', hl.dsp.exec_cmd('playerctl play-pause'), { locked = true })

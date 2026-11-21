@@ -27,6 +27,13 @@ cat > "$HOME/.config/waybar/theme.css" <<EOF
 @define-color theme_fg_color #${FG_ACTIVE};
 EOF
 
+# Quickshell (only where it's set up; it reloads the file itself)
+if [[ -d "$HOME/.config/quickshell" ]]; then
+cat > "$HOME/.config/quickshell/theme.json" <<EOF
+{ "bg": "#${BG}", "fg": "#${FG_ACTIVE}" }
+EOF
+fi
+
 # Hyprland
 cat > "$HOME/.config/hypr/theme.lua" <<EOF
 local theme = {}
