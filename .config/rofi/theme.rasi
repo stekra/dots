@@ -23,7 +23,7 @@ inputbar {
     children: [ entry ];
     padding: 12px 16px;
     background-color: @bg;
-    border-radius: 20px;
+    border-radius: 24px;
     border: 2px;
     border-color: @fg-dim;
 }
@@ -42,7 +42,7 @@ listview {
     padding: 8px 0px 8px 8px;
     spacing: 0px;
     background-color: @bg;
-    border-radius: 20px;
+    border-radius: 24px;
     border: 2px;
     border-color: @fg-dim;
     scrollbar: true;
@@ -59,7 +59,7 @@ scrollbar {
 element {
     spacing: 12px;
     padding: 8px 12px;
-    border-radius: 16px;
+    border-radius: 24px;
 }
 
 element-text {
@@ -68,6 +68,6 @@ element-text {
 
 element selected.normal {
     background-color: @fg;
-    text-color: @bg;
+    text-color: @bg-solid;
 }
 
