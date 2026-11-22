@@ -3,7 +3,8 @@ import Quickshell
 import Quickshell.Hyprland
 import qs
 
-// Dots for this monitor's workspaces, top to bottom; the active one is a taller pill.
+// Dots for this monitor's workspaces, top to bottom, in Apple's visionOS style:
+// small dots, and the active one stretched into a long, slim capsule.
 // New dots grow in, removed dots shrink away, and switching workspaces stretches
 // and recolors the dots smoothly.
 //
@@ -13,7 +14,9 @@ import qs
 Column {
     id: root
     required property ShellScreen screen
-    readonly property int gap: 6
+    readonly property int dotSize: 6
+    readonly property int activeLength: 18
+    readonly property int gap: 5
     readonly property int duration: 200
 
     // each dot carries its own gap below it (so it can grow in and out smoothly);
@@ -84,9 +87,9 @@ Column {
             Rectangle {
                 id: dot
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: 8
-                height: slot.active ? 16 : 8
-                radius: 4
+                width: root.dotSize
+                height: slot.active ? root.activeLength : root.dotSize
+                radius: width / 2
                 opacity: slot.appear
                 color: slot.active ? Theme.fg : Theme.dim
 
