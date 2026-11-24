@@ -56,7 +56,6 @@ hl.on('hyprland.start', function()
     hl.exec_cmd('steam -silent')
     -- hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
     hl.exec_cmd('hyprsunset')
-    hl.exec_cmd('gnome-keyring-daemon --start -- components=secret')
     -- preload Firefox with a parked window so firefox-open is fast
     hl.exec_cmd('firefox', { workspace = 'special:firefox silent' })
 end)
