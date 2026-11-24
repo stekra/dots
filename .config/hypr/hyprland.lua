@@ -4,7 +4,7 @@ hl.monitor({
     output = '',
     mode = 'preferred',
     position = 'auto',
-    scale = '1.2',
+    scale = '1',
 })
 
 hl.monitor({
@@ -45,7 +45,9 @@ hl.on('hyprland.start', function()
     hl.exec_cmd('qs')
     hl.exec_cmd('wl-clip-persist --clipboard regular')
     hl.exec_cmd('sunshine')
-    hl.exec_cmd('steam -silent')
+    -- wait (max ~30s) for Tailscale to finish rewriting /etc/resolv.conf, else Steam
+    -- caches a broken resolver and stays offline ("Couldn't resolve host name")
+    hl.exec_cmd([[sh -c 'for i in $(seq 30); do grep -q 100.100.100.100 /etc/resolv.conf && getent hosts steamconnecttest.com >/dev/null && break; sleep 1; done; sleep 2; exec steam -silent']])
     -- preload Firefox with a parked window so firefox-open is fast
     hl.exec_cmd('firefox', { workspace = 'special:firefox silent' })
 end)
@@ -75,7 +77,9 @@ hl.config({
         rounding = 8,
         rounding_power = 4,
         active_opacity = 1.0,
-        inactive_opacity = 0.8,
+        -- inactive_opacity = 0.8,
+        dim_inactive = true,
+        dim_strength = 0.2,
 
         shadow = {
             enabled = true,
