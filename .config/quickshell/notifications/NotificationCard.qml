@@ -89,7 +89,7 @@ Item {
         onTriggered: slot.leave("expire")
     }
 
-    Rectangle {
+    Item {
         id: card
         // grows from the clock's center: the window's left edge is the island's
         // center line, and the window's vertical middle is the clock's center
@@ -102,8 +102,12 @@ Item {
         }
         width: Theme.notificationWidth
         height: content.height + 2 * slot.padding
-        radius: Theme.islandWidth / 2
-        color: Theme.bg
+
+        SmoothRect {
+            anchors.fill: parent
+            radius: Theme.islandWidth / 2
+            color: Theme.bg
+        }
 
         HoverHandler { id: hover }
 

@@ -67,8 +67,14 @@ PanelWindow {
             id: clock
             anchors.horizontalCenter: parent.horizontalCenter; anchors.alignWhenCentered: false
         }
-        Battery {
+        // status group: network, bluetooth, battery
+        Column {
             anchors.horizontalCenter: parent.horizontalCenter; anchors.alignWhenCentered: false
+            spacing: 10
+
+            NetworkIcon { anchors.horizontalCenter: parent.horizontalCenter; anchors.alignWhenCentered: false }
+            BluetoothIcon { anchors.horizontalCenter: parent.horizontalCenter; anchors.alignWhenCentered: false }
+            Battery { anchors.horizontalCenter: parent.horizontalCenter; anchors.alignWhenCentered: false }
         }
     }
 

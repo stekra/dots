@@ -12,7 +12,10 @@ Singleton {
     // secondary elements (date, empty part of bars, inactive dots): the text
     // color, see-through, so it reads the same in light and dark
     readonly property color dim: Qt.alpha(fg, 0.3)
-    // status colors, same in light and dark (macOS system orange/green)
+    // secondary text (the date): Apple's secondary label color, the text color at 60%
+    readonly property color secondary: Qt.alpha(fg, 0.6)
+    // status colors, same in light and dark (macOS system red/orange/green)
+    readonly property color critical: "#ff453a"
     readonly property color warning: "#ff9f0a"
     readonly property color good: "#30d158"
 
@@ -20,6 +23,9 @@ Singleton {
     property string font: ""
     readonly property int fontSize: 12
     readonly property string iconFont: "IoskeleyMonoTerm Nerd Font"
+
+    // how to open a terminal app (wifi and bluetooth clicks open wlctl / bluetui)
+    readonly property var terminal: ["footclient"]
 
     // island and spacing
     readonly property int islandWidth: 24
