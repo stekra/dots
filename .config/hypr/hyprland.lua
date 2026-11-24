@@ -4,7 +4,7 @@ hl.monitor({
     output = '',
     mode = 'preferred',
     position = 'auto',
-    scale = '1',
+    scale = '1.2',
 })
 
 hl.monitor({
@@ -25,14 +25,8 @@ hl.env('GDK_BACKEND', 'wayland,x11,*')
 hl.env('QT_QPA_PLATFORM', 'wayland;xcb')
 hl.env('CLUTTER_BACKEND', 'wayland')
 
-hl.env('XDG_CURRENT_DESKTOP', 'Hyprland')
-hl.env('XDG_SESSION_TYPE', 'wayland')
-hl.env('XDG_SESSION_DESKTOP', 'Hyprland')
-
 hl.env('QT_AUTO_SCREEN_SCALE_FACTOR', '1')
-hl.env('QT_QPA_PLATFORM', 'wayland;xcb')
 hl.env('QT_WAYLAND_DISABLE_WINDOWDECORATION', '1')
-hl.env('QT_QPA_PLATFORMTHEME', 'qt5ct')
 
 hl.env('MOZ_ENABLE_WAYLAND', '1')
 hl.env('ELECTRON_OZONE_PLATFORM_HINT', 'wayland')
@@ -44,18 +38,14 @@ hl.env('XCURSOR_THEME', 'macOS27-GoldenGate')
 hl.env('XCURSOR_SIZE', '32')
 
 hl.env('TERMINAL', 'footclient')
-hl.env('TERM', 'footclient')
 
 hl.env('GTK_IM_MODULE', 'simple')
 
 hl.on('hyprland.start', function()
     hl.exec_cmd('qs')
     hl.exec_cmd('wl-clip-persist --clipboard regular')
-    -- hl.exec_cmd('hyprsunset')
     hl.exec_cmd('sunshine')
     hl.exec_cmd('steam -silent')
-    -- hl.exec_cmd('ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false')
-    hl.exec_cmd('hyprsunset')
     -- preload Firefox with a parked window so firefox-open is fast
     hl.exec_cmd('firefox', { workspace = 'special:firefox silent' })
 end)
@@ -199,8 +189,6 @@ hl.config({
 
 hl.bind('SUPER + Return', hl.dsp.exec_cmd('footclient'))
 hl.bind('SUPER + T', hl.dsp.exec_cmd('footclient'))
--- hl.bind('SUPER + Return', hl.dsp.exec_cmd('ghostty --gtk-single-instance=true'))
--- hl.bind('SUPER + T', hl.dsp.exec_cmd('ghostty --gtk-single-instance=true'))
 hl.bind('SUPER + W', hl.dsp.window.close())
 hl.bind('SUPER + Q', hl.dsp.window.kill())
 hl.bind('SUPER + E', hl.dsp.exec_cmd('nautilus --new-window'))
@@ -335,13 +323,6 @@ hl.window_rule({
 hl.layer_rule({
     name  = 'rofi-blur',
     match = { namespace = '^rofi$' },
-    blur = true,
-    ignore_alpha = 0.01,
-})
-
-hl.layer_rule({
-    name  = 'mako-blur',
-    match = { namespace = '^notifications$' },
     blur = true,
     ignore_alpha = 0.01,
 })
