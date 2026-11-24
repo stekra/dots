@@ -46,8 +46,13 @@ Singleton {
     property int lastStep: 0
     property real lastStepTime: 0
 
+    // emitted on every key step, even when the level is already at the end and
+    // doesn't change, so the OSD still shows
+    signal stepped()
+
     function step(direction) {
         if (!ready) return
+        stepped()
         const steps = Theme.levelSteps
         const from = Date.now() - lastStepTime < 400 ? lastStep : Math.round(level * steps)
         lastStep = Math.max(0, Math.min(steps, from + direction))

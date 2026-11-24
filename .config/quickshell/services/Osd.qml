@@ -24,10 +24,12 @@ Singleton {
         target: Audio
         function onVolumeChanged() { if (Audio.ready) show("volume") }
         function onMutedChanged() { if (Audio.ready) show("volume") }
+        function onStepped() { show("volume") }
     }
 
     Connections {
         target: Brightness
         function onLevelChanged() { if (Brightness.ready) show("brightness") }
+        function onStepped() { show("brightness") }
     }
 }
