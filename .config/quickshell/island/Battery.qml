@@ -8,9 +8,11 @@ import qs
 // Theme.dim and the charge fills from the left. The nub sits to the right with a
 // small gap, rounded only on its outer side. Low: red. Charging: green, with a
 // lightning bolt. 16 wide, about as wide as the wifi icon above it.
+// Hidden on machines without a laptop battery (desktops); the island closes the gap.
 Item {
     id: root
     readonly property var battery: UPower.displayDevice
+    visible: battery.isLaptopBattery
     readonly property bool charging: battery.state === UPowerDeviceState.Charging
     readonly property bool low: battery.percentage <= 0.2 && !charging
 
